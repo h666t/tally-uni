@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/index/Home"
+    "pages/index/Home",
+    "pages/index/Money"
   ],
   "subPackages": [],
   "window": {

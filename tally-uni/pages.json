@@ -2,7 +2,12 @@
 	"pages": [{
 		"path": "pages/index/Home",
 		"style": {
-			"navigationBarTitleText": "极简记账"
+			"navigationBarTitleText": "EDIT BY HAOTIAN"
+		}
+	},{
+		"path": "pages/index/Money",
+		"style": {
+			"navigationBarTitleText": "记账"
 		}
 	}],
 	"globalStyle": {

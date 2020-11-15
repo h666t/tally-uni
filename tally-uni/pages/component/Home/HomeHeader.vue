@@ -11,9 +11,8 @@
           <text class="money">￥0.00</text>
         </view>
       </view>
-      <text class="chartAnalyse">查看图标分析</text>
+      <navigator to="" class="chartAnalyse">查看图标分析</navigator>
     </view>
-
   </view>
 </template>
 
