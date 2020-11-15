@@ -105,11 +105,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"pages/component/Home/HomeBody":1,"pages/component/Home/HomeHeader":1};
+/******/ 		var cssChunks = {"pages/component/Home/HomeBody":1,"pages/component/Home/HomeButton":1,"pages/component/Home/HomeHeader":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"pages/component/Home/HomeBody":"pages/component/Home/HomeBody","pages/component/Home/HomeHeader":"pages/component/Home/HomeHeader"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"pages/component/Home/HomeBody":"pages/component/Home/HomeBody","pages/component/Home/HomeButton":"pages/component/Home/HomeButton","pages/component/Home/HomeHeader":"pages/component/Home/HomeHeader"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

@@ -1,7 +1,6 @@
 {
   "pages": [
-    "pages/index/Home",
-    "pages/Component"
+    "pages/index/Home"
   ],
   "subPackages": [],
   "window": {

@@ -135,10 +135,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var HomeHeader = function HomeHeader() {__webpack_require__.e(/*! require.ensure | pages/component/Home/HomeHeader */ "pages/component/Home/HomeHeader").then((function () {return resolve(__webpack_require__(/*! ../component/Home/HomeHeader */ 27));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var HomeBody = function HomeBody() {__webpack_require__.e(/*! require.ensure | pages/component/Home/HomeBody */ "pages/component/Home/HomeBody").then((function () {return resolve(__webpack_require__(/*! ../component/Home/HomeBody */ 35));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
-
-
-
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var HomeHeader = function HomeHeader() {__webpack_require__.e(/*! require.ensure | pages/component/Home/HomeHeader */ "pages/component/Home/HomeHeader").then((function () {return resolve(__webpack_require__(/*! ../component/Home/HomeHeader */ 19));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var HomeBody = function HomeBody() {__webpack_require__.e(/*! require.ensure | pages/component/Home/HomeBody */ "pages/component/Home/HomeBody").then((function () {return resolve(__webpack_require__(/*! ../component/Home/HomeBody */ 26));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var HomeButton = function HomeButton() {__webpack_require__.e(/*! require.ensure | pages/component/Home/HomeButton */ "pages/component/Home/HomeButton").then((function () {return resolve(__webpack_require__(/*! ../component/Home/HomeButton */ 33));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -153,7 +150,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 {
-  components: { HomeBody: HomeBody, HomeHeader: HomeHeader } };exports.default = _default;
+  components: { HomeButton: HomeButton, HomeBody: HomeBody, HomeHeader: HomeHeader } };exports.default = _default;
 
 /***/ }),
 /* 17 */

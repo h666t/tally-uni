@@ -24,32 +24,20 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.wrapper .header > .output.data-v-762a8ad6, .wrapper .header > .input.data-v-762a8ad6 {
-  margin-left: 15px;
-  font-weight: bold;
+.wrapper.data-v-19888d34 {
+  position: relative;
+  margin-bottom: 30px;
 }
-.wrapper > .list.data-v-762a8ad6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-          flex-direction: column;
-  height: 200px;
-  overflow: auto;
-  padding: 10px;
-}
-.wrapper > .list > ._li.data-v-762a8ad6 {
-  padding: 0 20px;
-  -webkit-border-radius: 15px;
-          border-radius: 15px;
-  background: white;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
+.wrapper > button.data-v-19888d34 {
+  position: absolute;
+  right: 25px;
+  bottom: 0;
+  width: 100px;
+  height: 45px;
+  background: #f60;
+  padding: 0;
+  -webkit-border-radius: 20px;
+          border-radius: 20px;
+  color: white;
 }
 

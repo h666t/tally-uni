@@ -2,21 +2,18 @@
   <view class="container">
     <view class="title">极简记帐</view>
     <HomeHeader/>
-    <HomeBody/>
-    <view>
-      <navigator url="../Component">
-        111
-      </navigator>
-    </view>
+    <view class="homeBodyWrapper"><HomeBody/></view>
+    <HomeButton/>
   </view>
 </template>
 
 <script>
 import HomeHeader from "../component/Home/HomeHeader"
 import HomeBody from "../component/Home/HomeBody"
+import HomeButton from "../component/Home/HomeButton"
 
 export default {
-  components: {HomeBody, HomeHeader},
+  components: {HomeButton, HomeBody, HomeHeader},
 }
 </script>
 
@@ -31,6 +28,9 @@ export default {
   display: flex;
   flex-direction: column;
   overflow: auto;
+  >.homeBodyWrapper{
+    flex-grow: 1;
+  }
   > .title {
     background: $uni-text-color;
     color: white;

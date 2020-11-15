@@ -19,7 +19,6 @@
 <style scoped lang="scss">
 .wrapper {
   .header {
-    border: 1px solid red;
 
     > .output, > .input {
       margin-left: 15px;
@@ -31,10 +30,10 @@
     display: flex;
     flex-direction: column;
     height: 200px;
-    border:1px solid red;
     overflow: auto;
     padding: 10px;
-    >li{
+
+    > li {
       padding: 0 20px;
       border-radius: 15px;
       background: white;

@@ -63,6 +63,11 @@
           flex-direction: column;
   overflow: auto;
 }
+.container > .homeBodyWrapper.data-v-18810f55 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+          flex-grow: 1;
+}
 .container > .title.data-v-18810f55 {
   background: #333;
   color: white;
