@@ -1,8 +1,18 @@
 <template>
   <view class="wrapper">
-    <button>记一笔</button>
+    <button @click="goToMoney">记一笔</button>
   </view>
 </template>
+
+<script>
+export default {
+  methods:{
+    goToMoney(){
+      uni.navigateTo({url:'Money'})
+    }
+  }
+}
+</script>
 
 <style scoped lang="scss">
 .wrapper {

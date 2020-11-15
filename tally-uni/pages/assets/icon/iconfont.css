@@ -1,0 +1,23 @@
+@font-face {
+    font-family: "iconfont"; /* project id 2204895 */
+    src: url("https://at.alicdn.com/t/font_2204895_239gn51i0df.eot");
+    src: url("https://at.alicdn.com/t/font_2204895_239gn51i0df.eot?#iefix") format("embedded-opentype"),
+    url("https://at.alicdn.com/t/font_2204895_239gn51i0df.woff2") format("woff2"),
+    url("https://at.alicdn.com/t/font_2204895_239gn51i0df.woff") format("woff"),
+    url("https://at.alicdn.com/t/font_2204895_239gn51i0df.ttf") format("truetype"),
+    url("https://at.alicdn.com/t/font_2204895_239gn51i0df.svg#iconfont") format("svg");
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-baseline-close-px:before {
+    content: "\e615";
+}
+
+/*icon-font的使用 ： https://www.jianshu.com/p/7fc08b1b4d85*/
