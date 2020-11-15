@@ -1,0 +1,15 @@
+page,view{
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+/* 解决头条小程序组件内引入字体不生效的问题 */
+
+
+
+
+
+
+
+

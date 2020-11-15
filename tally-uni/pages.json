@@ -1,0 +1,20 @@
+{
+	"pages": [{
+		"path": "pages/index/Home",
+		"style": {
+			"navigationBarTitleText": "极简记账"
+		}
+	},
+	{
+		"path":"pages/Component",
+		"style": {
+			"navigationBarTitleText": "极简记账"
+		}
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#007AFF",
+		"backgroundColor": "#FFFFFF"
+	}
+}

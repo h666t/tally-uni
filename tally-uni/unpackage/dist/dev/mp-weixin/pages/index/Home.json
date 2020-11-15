@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "极简记账",
+  "usingComponents": {
+    "home-body": "/pages/component/Home/HomeBody",
+    "home-header": "/pages/component/Home/HomeHeader"
+  }
+}
