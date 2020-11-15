@@ -7,7 +7,6 @@ export default {
   props:{
     iconName:{
       type:String,
-      default:()=>{return ''}
     }
   }
 }

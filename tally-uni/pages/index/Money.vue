@@ -1,12 +1,13 @@
 <template>
   <view>
     <MoneyHeader/>
-    Money
+    <MoneyBody/>
   </view>
 </template>
 <script>
 import MoneyHeader from "../component/Money/MoneyHeader"
+import MoneyBody from "../component/Money/MoneyBody"
 export default {
-  components: {MoneyHeader}
+  components: {MoneyBody, MoneyHeader}
 }
 </script>

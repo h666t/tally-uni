@@ -1,1 +1,1 @@
-<view class="wrapper data-v-1953883a"><icon iconName="icon-baseline-close-px" class="data-v-1953883a"></icon><view class="inputAndOutput data-v-1953883a"><text class="data-v-1953883a">支出</text><text class="data-v-1953883a">收入</text></view></view>
+<view class="wrapper data-v-1953883a"><text class="output active data-v-1953883a">支出</text><text class="input data-v-1953883a">收入</text></view>

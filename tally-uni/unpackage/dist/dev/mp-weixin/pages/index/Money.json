@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "记账",
   "usingComponents": {
+    "money-body": "/pages/component/Money/MoneyBody",
     "money-header": "/pages/component/Money/MoneyHeader"
   }
 }

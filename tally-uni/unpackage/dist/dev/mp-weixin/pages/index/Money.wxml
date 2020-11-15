@@ -1,1 +1,1 @@
-<view><money-header vue-id="b45deee8-1" bind:__l="__l"></money-header>Money</view>
+<view><money-header vue-id="b45deee8-1" bind:__l="__l"></money-header><money-body vue-id="b45deee8-2" bind:__l="__l"></money-body></view>
