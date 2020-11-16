@@ -114,17 +114,48 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Icon = function Icon() {__webpack_require__.e(/*! require.ensure | pages/component/public/Icon */ "pages/component/public/Icon").then((function () {return resolve(__webpack_require__(/*! ../public/Icon */ 73));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
-
-
-
-
-
-
-
-
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default =
 {
-  components: { Icon: Icon } };exports.default = _default;
+  created: function created() {
+    this.$store.commit('updateType', '支出');
+  },
+  data: function data() {
+    return {
+      text: ['支出', '收入'],
+      type: '支出' };
+
+  },
+  methods: {
+    changeType: function changeType() {
+      if (this.$store.state.type === '支出') {
+        this.$store.commit('updateType', '收入');
+        this.type = '收入';
+      } else {
+        this.$store.commit('updateType', '支出');
+        this.type = '支出';
+      }
+    } } };exports.default = _default;
 
 /***/ }),
 

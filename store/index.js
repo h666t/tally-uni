@@ -4,7 +4,7 @@ import dayjs from "dayjs"
 Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
-    type:'-',
+    type:'支出',
     amount:0,
     date: dayjs().format('YYYY-MM-DD')
   },
@@ -15,6 +15,9 @@ const store = new Vuex.Store({
     updateDate(state,payload){
       state.date = payload
       console.log(state)
+    },
+    updateType(state,payload){
+      state.type = payload
     }
   },
   actions: {}

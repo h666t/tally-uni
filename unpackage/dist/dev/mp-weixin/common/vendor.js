@@ -1949,7 +1949,7 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 70));functi
 _vue.default.use(_vuex.default);
 var store = new _vuex.default.Store({
   state: {
-    type: '-',
+    type: '支出',
     amount: 0,
     date: (0, _dayjs.default)().format('YYYY-MM-DD') },
 
@@ -1960,6 +1960,9 @@ var store = new _vuex.default.Store({
     updateDate: function updateDate(state, payload) {
       state.date = payload;
       console.log(state);
+    },
+    updateType: function updateType(state, payload) {
+      state.type = payload;
     } },
 
   actions: {} });var _default =

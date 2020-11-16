@@ -1,14 +1,46 @@
 <template>
-  <view class="wrapper">
-      <text class="output active">支出</text>
-      <text class="input">收入</text>
+<!--  点击支出-->
+  <view @click="changeType" v-if="type === '支出'" class="wrapper">
+    <text v-for="item in text"
+          :key="item"
+          :class="item === '支出' ? 'output active' : 'input'"
+    >
+      {{item}}
+    </text>
+  </view>
+<!--  点击收入-->
+  <view @click="changeType" v-else class="wrapper">
+    <text v-for="item in text"
+          :key="item"
+          :class="item === '支出' ? 'output ' : 'input active'"
+    >
+      {{item}}
+    </text>
   </view>
 </template>
 
 <script>
-import Icon from "../public/Icon"
 export default {
-  components: {Icon}
+  created() {
+    this.$store.commit('updateType','支出')
+  },
+  data(){
+    return {
+      text:['支出','收入'],
+      type: '支出'
+    }
+  },
+  methods:{
+    changeType(){
+      if (this.$store.state.type === '支出'){
+        this.$store.commit('updateType','收入')
+        this.type = '收入'
+      }else {
+        this.$store.commit('updateType','支出')
+        this.type = '支出'
+      }
+    }
+  }
 }
 </script>
 
