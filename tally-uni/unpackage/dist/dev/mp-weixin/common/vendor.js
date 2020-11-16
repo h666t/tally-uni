@@ -1935,6 +1935,23 @@ function normalizeComponent (
 
 /***/ }),
 
+/***/ 104:
+/*!****************************************************************************!*\
+  !*** D:/code/p/Item/tally-uni/tally-uni/pages/lib/Money/clickNumberPad.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var clickNumberPad = function clickNumberPad(e) {
+  var value = e.currentTarget;
+  console.log(value.dataset);
+};var _default =
+
+clickNumberPad;exports.default = _default;
+
+/***/ }),
+
 /***/ 2:
 /*!******************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js ***!
