@@ -1980,7 +1980,8 @@ var store = new _vuex.default.Store({
     type: '支出',
     amount: 0,
     date: (0, _dayjs.default)().format('YYYY-MM-DD'),
-    tags: undefined },
+    tags: undefined,
+    beSelectedTags: [] },
 
   mutations: {
     updateAmount: function updateAmount(state, payload) {
@@ -1994,17 +1995,24 @@ var store = new _vuex.default.Store({
       state.type = payload;
     },
     fetchTags: function fetchTags(state) {
+      var defaultTags = [
+      { id: (0, _idCreator.default)(), name: '衣' },
+      { id: (0, _idCreator.default)(), name: '食' },
+      { id: (0, _idCreator.default)(), name: '住' },
+      { id: (0, _idCreator.default)(), name: '行' }];
+
       uni.getStorage({ key: 'tags', success: function success(res) {
           state.tags = res;
         } });
       if (state.tags === undefined) {
-        state.tags = [
-        { id: (0, _idCreator.default)(), name: '衣' },
-        { id: (0, _idCreator.default)(), name: '食' },
-        { id: (0, _idCreator.default)(), name: '住' },
-        { id: (0, _idCreator.default)(), name: '行' }];
+        uni.setStorage({
+          key: 'tags', data: defaultTags });
 
+        state.tags = defaultTags;
       }
+    },
+    updateBeSelectedTags: function updateBeSelectedTags(state, payload) {
+      state.beSelectedTags = payload;
     } },
 
   actions: {} });var _default =
@@ -9224,7 +9232,7 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var result = '0';
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _this = void 0;var result = '0';
 var moneyFooterlib = {
   clickNumberPad: function clickNumberPad(e, $store) {
     var value = e.$orig;
@@ -9251,7 +9259,7 @@ var moneyFooterlib = {
         }
         return result;
       case 'ok':
-        $store.commit('updateAmount', parseFloat(result));
+        console.log(_this.$store.state);
         return;
       case "0":
         if (result.indexOf("0") === 0 && result.indexOf('.') === -1) {

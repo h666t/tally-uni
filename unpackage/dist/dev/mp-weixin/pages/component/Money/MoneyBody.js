@@ -81,6 +81,40 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var l0 = _vm.__map(_vm.tags, function(item, __i0__) {
+    var $orig = _vm.__get_orig(item)
+
+    var g0 = _vm.beSelectedTags.indexOf(item.id)
+    return {
+      $orig: $orig,
+      g0: g0
+    }
+  })
+
+  if (!_vm._isMounted) {
+    _vm.e0 = function(item) {
+      var args = [],
+        len = arguments.length - 1
+      while (len-- > 0) args[len] = arguments[len + 1]
+
+      var _temp = args[args.length - 1].currentTarget.dataset,
+        _temp2 = _temp.eventParams || _temp["event-params"],
+        item = _temp2.item
+
+      var _temp, _temp2
+
+      _vm.changeBeSelectedTags(item)
+    }
+  }
+
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        l0: l0
+      }
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -129,23 +163,46 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _idCreator = _interopRequireDefault(__webpack_require__(/*! ../../lib/idCreator */ 108));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var Icon = function Icon() {__webpack_require__.e(/*! require.ensure | pages/component/public/Icon */ "pages/component/public/Icon").then((function () {return resolve(__webpack_require__(/*! ../public/Icon */ 73));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+var _idCreator = _interopRequireDefault(__webpack_require__(/*! ../../lib/idCreator */ 108));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}var Icon = function Icon() {__webpack_require__.e(/*! require.ensure | pages/component/public/Icon */ "pages/component/public/Icon").then((function () {return resolve(__webpack_require__(/*! ../public/Icon */ 73));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 {
   beforeCreate: function beforeCreate() {
     this.$store.commit('fetchTags');
+    this.$store.commit('updateBeSelectedTags', []);
   },
   mounted: function mounted() {
     console.log(this.tags);
   },
   data: function data() {
     return {
-      tags: this.$store.state.tags };
+      tags: this.$store.state.tags,
+      beSelectedTags: this.$store.state.beSelectedTags };
 
   },
   components: { Icon: Icon },
   methods: {
-    idCreator: _idCreator.default } };exports.default = _default;
+    idCreator: _idCreator.default,
+    changeBeSelectedTags: function changeBeSelectedTags(item) {var _this = this;var
+      id = item.$orig.id;
+      var publicFn = function publicFn(array) {
+        _this.beSelectedTags = array;
+        _this.$store.commit('updateBeSelectedTags', _this.beSelectedTags);
+      };
+      if (this.beSelectedTags.indexOf(id) !== -1) {
+        var index = this.beSelectedTags.indexOf(id);
+        console.log(index);
+        var newBeSelectedTags = _toConsumableArray(this.beSelectedTags);
+        newBeSelectedTags.splice(index, 1);
+        publicFn(newBeSelectedTags);
+      } else {
+        publicFn([].concat(_toConsumableArray(this.beSelectedTags), [id]));
+      }
+    } } };exports.default = _default;
 
 /***/ }),
 

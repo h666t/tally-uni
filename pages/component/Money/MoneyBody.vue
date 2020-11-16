@@ -1,7 +1,12 @@
 <template>
   <view class="wrapper">
     <ol>
-      <li v-for="item in tags" :key="item.id">
+      <li v-for="item in tags" :key="item.id"
+          :class="beSelectedTags.indexOf(item.id) !== -1 ? 'active' : undefined"
+          @click="()=>{
+            changeBeSelectedTags(item)
+          }"
+      >
         {{item.name}}
       </li>
       <li>
@@ -18,18 +23,36 @@ import idCreator from "../../lib/idCreator"
 export default {
   beforeCreate() {
     this.$store.commit('fetchTags')
+    this.$store.commit('updateBeSelectedTags',[])
   },
   mounted() {
     console.log(this.tags)
   },
   data() {
     return {
-      tags: this.$store.state.tags
+      tags: this.$store.state.tags,
+      beSelectedTags: this.$store.state.beSelectedTags
     }
   },
   components: {Icon},
   methods: {
     idCreator,
+    changeBeSelectedTags(item) {
+      const {id} = item.$orig
+      const publicFn = (array) => {
+        this.beSelectedTags = array
+        this.$store.commit('updateBeSelectedTags', this.beSelectedTags)
+      }
+      if (this.beSelectedTags.indexOf(id) !== -1) {
+        const index = this.beSelectedTags.indexOf(id)
+        console.log(index)
+        const newBeSelectedTags = [...this.beSelectedTags]
+        newBeSelectedTags.splice(index, 1)
+        publicFn(newBeSelectedTags)
+      } else {
+        publicFn([...this.beSelectedTags, id])
+      }
+    }
   }
 }
 </script>

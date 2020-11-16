@@ -9,7 +9,8 @@ const store = new Vuex.Store({
     type: '支出',
     amount: 0,
     date: dayjs().format('YYYY-MM-DD'),
-    tags: undefined
+    tags: undefined,
+    beSelectedTags:[]
   },
   mutations: {
     updateAmount(state, payload) {
@@ -23,18 +24,25 @@ const store = new Vuex.Store({
       state.type = payload
     },
     fetchTags(state){
+      const defaultTags = [
+        {id: IdCreator(), name: '衣'},
+        {id: IdCreator(), name: '食'},
+        {id: IdCreator(), name: '住'},
+        {id: IdCreator(), name: '行'}
+      ]
         uni.getStorage({key:'tags',success(res) {
           state.tags = res
         }})
       if (state.tags === undefined){
-        state.tags = [
-          {id: IdCreator(), name: '衣'},
-          {id: IdCreator(), name: '食'},
-          {id: IdCreator(), name: '住'},
-          {id: IdCreator(), name: '行'}
-        ]
+        uni.setStorage({
+          key:'tags',data: defaultTags
+        })
+        state.tags = defaultTags
       }
-    }
+    },
+    updateBeSelectedTags(state,payload){
+      state.beSelectedTags = payload
+    },
   },
   actions: {}
 })

@@ -25,7 +25,7 @@ const moneyFooterlib={
         }
         return result;
       case 'ok':
-        $store.commit('updateAmount',parseFloat(result))
+        console.log(this.$store.state)
         return;
       case "0":
         if (result.indexOf("0")===0 && result.indexOf('.') === -1){
