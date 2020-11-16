@@ -127,11 +127,16 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
 var _idCreator = _interopRequireDefault(__webpack_require__(/*! ../../lib/idCreator */ 108));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var Icon = function Icon() {__webpack_require__.e(/*! require.ensure | pages/component/public/Icon */ "pages/component/public/Icon").then((function () {return resolve(__webpack_require__(/*! ../public/Icon */ 73));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
 {
-  created: function created() {
+  beforeCreate: function beforeCreate() {
     this.$store.commit('fetchTags');
-    console.log(this.$store.state.tags);
+  },
+  mounted: function mounted() {
+    console.log(this.tags);
   },
   data: function data() {
     return {
