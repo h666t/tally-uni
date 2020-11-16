@@ -1935,6 +1935,32 @@ function normalizeComponent (
 
 /***/ }),
 
+/***/ 108:
+/*!*******************************************************!*\
+  !*** D:/code/p/Item/tally-uni/pages/lib/idCreator.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var n = uni.getStorage({
+  key: 'maxId',
+  success: function success(res) {
+    return res;
+  } }) ||
+0;
+
+var IdCreator = function IdCreator() {
+  n += 1;
+  uni.setStorage({ key: 'maxId', data: n });
+  return n;
+};var _default =
+
+IdCreator;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
 /***/ 11:
 /*!***********************************************!*\
   !*** D:/code/p/Item/tally-uni/store/index.js ***!
@@ -1943,15 +1969,18 @@ function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
 var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 12));
-var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 70));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 70));
+var _idCreator = _interopRequireDefault(__webpack_require__(/*! ../pages/lib/idCreator */ 108));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
 _vue.default.use(_vuex.default);
 var store = new _vuex.default.Store({
   state: {
     type: '支出',
     amount: 0,
-    date: (0, _dayjs.default)().format('YYYY-MM-DD') },
+    date: (0, _dayjs.default)().format('YYYY-MM-DD'),
+    tags: undefined },
 
   mutations: {
     updateAmount: function updateAmount(state, payload) {
@@ -1963,11 +1992,25 @@ var store = new _vuex.default.Store({
     },
     updateType: function updateType(state, payload) {
       state.type = payload;
+    },
+    fetchTags: function fetchTags(state) {
+      uni.getStorage({ key: 'tags', success: function success(res) {
+          state.tags = res;
+        } });
+      if (state.tags === undefined) {
+        state.tags = [
+        { id: (0, _idCreator.default)(), name: '衣' },
+        { id: (0, _idCreator.default)(), name: '食' },
+        { id: (0, _idCreator.default)(), name: '住' },
+        { id: (0, _idCreator.default)(), name: '行' }];
+
+      }
     } },
 
   actions: {} });var _default =
 
 store;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

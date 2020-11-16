@@ -114,7 +114,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Icon = function Icon() {__webpack_require__.e(/*! require.ensure | pages/component/public/Icon */ "pages/component/public/Icon").then((function () {return resolve(__webpack_require__(/*! ../public/Icon */ 73));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -127,11 +127,20 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-
-
-
+var _idCreator = _interopRequireDefault(__webpack_require__(/*! ../../lib/idCreator */ 108));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var Icon = function Icon() {__webpack_require__.e(/*! require.ensure | pages/component/public/Icon */ "pages/component/public/Icon").then((function () {return resolve(__webpack_require__(/*! ../public/Icon */ 73));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
-  components: { Icon: Icon } };exports.default = _default;
+  created: function created() {
+    this.$store.commit('fetchTags');
+    console.log(this.$store.state.tags);
+  },
+  data: function data() {
+    return {
+      tags: this.$store.state.tags };
+
+  },
+  components: { Icon: Icon },
+  methods: {
+    idCreator: _idCreator.default } };exports.default = _default;
 
 /***/ }),
 

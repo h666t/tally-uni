@@ -1,12 +1,9 @@
 <template>
   <view class="wrapper">
     <ol>
-      <li class="active">衣</li>
-      <li>食</li>
-      <li>住</li>
-      <li>行</li>
-      <li>住</li>
-      <li>行</li>
+      <li v-for="(name,id) in tags" :key="id">
+        {{name}}
+      </li>
       <li><Icon class="icon" icon-name="icon-Settingscontroloptions"/></li>
     </ol>
   </view>
@@ -14,8 +11,21 @@
 
 <script>
 import Icon from "../public/Icon"
+import idCreator from "../../lib/idCreator"
 export default {
-  components: {Icon}
+  created() {
+    this.$store.commit('fetchTags')
+    console.log(this.$store.state.tags)
+  },
+  data(){
+    return {
+      tags: this.$store.state.tags
+    }
+  },
+  components: {Icon},
+  methods:{
+    idCreator,
+  }
 }
 </script>
 
