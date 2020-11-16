@@ -177,23 +177,19 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-
-
-
-
-
 var _moneyFooterlib = _interopRequireDefault(__webpack_require__(/*! ../../lib/Money/moneyFooterlib */ 69));
 var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 70));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var UniCalendar = function UniCalendar() {Promise.all(/*! require.ensure | components/uni-calendar/uni-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-calendar/uni-calendar")]).then((function () {return resolve(__webpack_require__(/*! ../../../components/uni-calendar/uni-calendar */ 80));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   created: function created() {//每次打开页面重置amount
     _moneyFooterlib.default.resetAmount();
-    console.log((0, _dayjs.default)().format('YYYY/MM/DD/HH/mm'));
+    this.$store.commit('updateDate', (0, _dayjs.default)().format('YYYY-MM-DD'));
   },
   components: { UniCalendar: UniCalendar },
   data: function data() {
     return {
       numberPadValue: [1, 2, 3, "删除", 4, 5, 6, "清零", 7, 8, 9, ".", 0, "ok"],
-      amount: '0' };
+      amount: '0',
+      date: this.$store.state.date };
 
   },
   methods: {
@@ -203,6 +199,10 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 70));functi
 
     changeAmount: function changeAmount(item) {
       this.amount = _moneyFooterlib.default.clickNumberPad(item, this.$store);
+    },
+    selectDate: function selectDate(e) {
+      this.$store.commit('updateDate', e.fulldate);
+      this.date = e.fulldate;
     } } };exports.default = _default;
 
 /***/ }),

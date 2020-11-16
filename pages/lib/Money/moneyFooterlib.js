@@ -44,7 +44,7 @@ const moneyFooterlib={
   },
  resetAmount(){
      result = '0'
- }
+ },
 }
 
 export default moneyFooterlib

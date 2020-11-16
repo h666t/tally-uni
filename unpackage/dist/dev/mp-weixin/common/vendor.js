@@ -1944,15 +1944,21 @@ function normalizeComponent (
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 12));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 12));
+var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 70));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 _vue.default.use(_vuex.default);
 var store = new _vuex.default.Store({
   state: {
-    amount: 0 },
+    type: '-',
+    amount: 0,
+    date: (0, _dayjs.default)().format('YYYY-MM-DD') },
 
   mutations: {
     updateAmount: function updateAmount(state, payload) {
       state.amount = payload;
+    },
+    updateDate: function updateDate(state, payload) {
+      state.date = payload;
       console.log(state);
     } },
 

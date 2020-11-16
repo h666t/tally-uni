@@ -34,13 +34,6 @@
           flex-direction: row-reverse;
   padding: 10px;
 }
-.wrapper .remark.data-v-5bb8501e {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  padding: 10px;
-  border: 1px solid #eaeaea;
-}
 .wrapper .numberPad.data-v-5bb8501e {
   margin-top: 10px;
   margin-bottom: 10px;

@@ -1,17 +1,12 @@
 <template>
   <view class="wrapper">
     <view>
-      <UniCalendar :insert="false" ref="calendar"/>
-      <button @click="openCalendar">请选择日期</button>
+      <UniCalendar @confirm="selectDate" :insert="false" ref="calendar"/>
+      <button @click="openCalendar">请选择日期：{{date}}</button>
     </view>
 
     <view class="numberScreen">
       {{amount}}
-    </view>
-
-    <view class="remark">
-      <text>备注：</text>
-      <input type="text" placeholder="写点备注吧...">
     </view>
 
     <view class="numberPad" >
@@ -37,13 +32,14 @@ import dayjs from 'dayjs'
 export default {
   created() { //每次打开页面重置amount
     moneyFooterlib.resetAmount()
-    console.log(dayjs().format('YYYY/MM/DD/HH/mm'))
+    this.$store.commit('updateDate',dayjs().format('YYYY-MM-DD'))
   },
   components: {UniCalendar},
   data() {
     return {
       numberPadValue: [1, 2, 3, "删除", 4, 5, 6, "清零", 7, 8, 9, ".", 0, "ok"],
-      amount:'0'
+      amount:'0',
+      date: this.$store.state.date,
     }
   },
   methods: {
@@ -54,7 +50,10 @@ export default {
     changeAmount(item){
       this.amount = moneyFooterlib.clickNumberPad(item,this.$store)
     },
-
+    selectDate(e){
+      this.$store.commit('updateDate',e.fulldate)
+      this.date = e.fulldate
+    }
   },
 }
 </script>
@@ -67,11 +66,6 @@ export default {
     padding: 10px;
   }
 
-  .remark {
-    display: flex;
-    padding: 10px;
-    border: 1px solid #eaeaea;
-  }
 
   .numberPad {
     margin-top: 10px;
