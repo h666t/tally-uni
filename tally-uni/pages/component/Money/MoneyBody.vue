@@ -1,8 +1,10 @@
 <template>
   <view class="wrapper">
     <ol>
-      <li>衣</li>
+      <li class="active">衣</li>
       <li>食</li>
+      <li>住</li>
+      <li>行</li>
       <li>住</li>
       <li>行</li>
       <li><Icon class="icon" icon-name="icon-Settingscontroloptions"/></li>
@@ -18,6 +20,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../../../uni";
 .wrapper{
   padding: 15px;
   background: white;
@@ -27,11 +30,14 @@ export default {
     display: flex;
     flex-wrap: wrap;
     >li{
-      margin: 15px 20px;
+      margin: 10px 15px;
       display: flex;
-      flex-grow: 1;
-      justify-content: center;
-      padding: 5px 10px;
+      padding: 5px 20px;
+      border-radius: 15px;
+    }
+    >.active{
+      background: $uni-color-subtitle;
+      color: white;
     }
   }
 }

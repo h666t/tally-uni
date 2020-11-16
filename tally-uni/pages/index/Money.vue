@@ -6,15 +6,16 @@
   <view class="moneyBody">
     <MoneyBody/>
   </view>
-    <view>123</view>
+  <MoneyFooter/>
   </view>
 </template>
 
 <script>
 import MoneyHeader from "../component/Money/MoneyHeader"
 import MoneyBody from "../component/Money/MoneyBody"
+import MoneyFooter from "../component/Money/MoneyFooter"
 export default {
-  components: {MoneyBody, MoneyHeader}
+  components: {MoneyFooter, MoneyBody, MoneyHeader}
 }
 </script>
 
