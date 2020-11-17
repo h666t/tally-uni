@@ -904,7 +904,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_NAME":"tally-uni","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"tally-uni","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1935,32 +1935,6 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 108:
-/*!*******************************************************!*\
-  !*** D:/code/p/Item/tally-uni/pages/lib/idCreator.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var n = uni.getStorage({
-  key: 'maxId',
-  success: function success(res) {
-    return res;
-  } }) ||
-0;
-
-var IdCreator = function IdCreator() {
-  n += 1;
-  uni.setStorage({ key: 'maxId', data: n });
-  return n;
-};var _default =
-
-IdCreator;exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
 /***/ 11:
 /*!***********************************************!*\
   !*** D:/code/p/Item/tally-uni/store/index.js ***!
@@ -1971,8 +1945,8 @@ IdCreator;exports.default = _default;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
 var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 12));
-var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 70));
-var _idCreator = _interopRequireDefault(__webpack_require__(/*! ../pages/lib/idCreator */ 108));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 13));
+var _idCreator = _interopRequireDefault(__webpack_require__(/*! ../pages/lib/idCreator */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}
 
 _vue.default.use(_vuex.default);
 var store = new _vuex.default.Store({
@@ -1981,7 +1955,8 @@ var store = new _vuex.default.Store({
     amount: 0,
     date: (0, _dayjs.default)().format('YYYY-MM-DD'),
     tags: undefined,
-    beSelectedTags: [] },
+    beSelectedTags: [],
+    dataList: [] },
 
   mutations: {
     updateAmount: function updateAmount(state, payload) {
@@ -1989,7 +1964,6 @@ var store = new _vuex.default.Store({
     },
     updateDate: function updateDate(state, payload) {
       state.date = payload;
-      console.log(state);
     },
     updateType: function updateType(state, payload) {
       state.type = payload;
@@ -2001,9 +1975,11 @@ var store = new _vuex.default.Store({
       { id: (0, _idCreator.default)(), name: '住' },
       { id: (0, _idCreator.default)(), name: '行' }];
 
-      uni.getStorage({ key: 'tags', success: function success(res) {
+      uni.getStorage({
+        key: 'tags', success: function success(res) {
           state.tags = res;
         } });
+
       if (state.tags === undefined) {
         uni.setStorage({
           key: 'tags', data: defaultTags });
@@ -2013,6 +1989,18 @@ var store = new _vuex.default.Store({
     },
     updateBeSelectedTags: function updateBeSelectedTags(state, payload) {
       state.beSelectedTags = payload;
+    },
+    updateDataList: function updateDataList(state, payload) {
+      var dataList = [];
+      // 从storage获取dataList
+      try {
+        dataList = uni.getStorageSync('dataList');
+      } catch (e) {
+        console.log(e);
+      }
+      console.log('---');
+      console.log(dataList);
+      uni.setStorage({ key: 'dataList', data: [].concat(_toConsumableArray(dataList), [payload]) });
     } },
 
   actions: {} });var _default =
@@ -3132,6 +3120,43 @@ var index = {
 
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ 3)))
+
+/***/ }),
+
+/***/ 13:
+/*!****************************************************************!*\
+  !*** D:/code/p/Item/tally-uni/node_modules/dayjs/dayjs.min.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function (t, e) { true ? module.exports = e() : undefined;}(this, function () {"use strict";var t = "millisecond",e = "second",n = "minute",r = "hour",i = "day",s = "week",u = "month",a = "quarter",o = "year",f = "date",h = /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[^0-9]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?.?(\d+)?$/,c = /\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,d = { name: "en", weekdays: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"), months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_") },$ = function $(t, e, n) {var r = String(t);return !r || r.length >= e ? t : "" + Array(e + 1 - r.length).join(n) + t;},l = { s: $, z: function z(t) {var e = -t.utcOffset(),n = Math.abs(e),r = Math.floor(n / 60),i = n % 60;return (e <= 0 ? "+" : "-") + $(r, 2, "0") + ":" + $(i, 2, "0");}, m: function t(e, n) {if (e.date() < n.date()) return -t(n, e);var r = 12 * (n.year() - e.year()) + (n.month() - e.month()),i = e.clone().add(r, u),s = n - i < 0,a = e.clone().add(r + (s ? -1 : 1), u);return +(-(r + (n - i) / (s ? i - a : a - i)) || 0);}, a: function a(t) {return t < 0 ? Math.ceil(t) || 0 : Math.floor(t);}, p: function p(h) {return { M: u, y: o, w: s, d: i, D: f, h: r, m: n, s: e, ms: t, Q: a }[h] || String(h || "").toLowerCase().replace(/s$/, "");}, u: function u(t) {return void 0 === t;} },y = "en",M = {};M[y] = d;var m = function m(t) {return t instanceof S;},D = function D(t, e, n) {var r;if (!t) return y;if ("string" == typeof t) M[t] && (r = t), e && (M[t] = e, r = t);else {var i = t.name;M[i] = t, r = i;}return !n && r && (y = r), r || !n && y;},v = function v(t, e) {if (m(t)) return t.clone();var n = "object" == typeof e ? e : {};return n.date = t, n.args = arguments, new S(n);},g = l;g.l = D, g.i = m, g.w = function (t, e) {return v(t, { locale: e.$L, utc: e.$u, x: e.$x, $offset: e.$offset });};var S = function () {function d(t) {this.$L = D(t.locale, null, !0), this.parse(t);}var $ = d.prototype;return $.parse = function (t) {this.$d = function (t) {var e = t.date,n = t.utc;if (null === e) return new Date(NaN);if (g.u(e)) return new Date();if (e instanceof Date) return new Date(e);if ("string" == typeof e && !/Z$/i.test(e)) {var r = e.match(h);if (r) {var i = r[2] - 1 || 0,s = (r[7] || "0").substring(0, 3);return n ? new Date(Date.UTC(r[1], i, r[3] || 1, r[4] || 0, r[5] || 0, r[6] || 0, s)) : new Date(r[1], i, r[3] || 1, r[4] || 0, r[5] || 0, r[6] || 0, s);}}return new Date(e);}(t), this.$x = t.x || {}, this.init();}, $.init = function () {var t = this.$d;this.$y = t.getFullYear(), this.$M = t.getMonth(), this.$D = t.getDate(), this.$W = t.getDay(), this.$H = t.getHours(), this.$m = t.getMinutes(), this.$s = t.getSeconds(), this.$ms = t.getMilliseconds();}, $.$utils = function () {return g;}, $.isValid = function () {return !("Invalid Date" === this.$d.toString());}, $.isSame = function (t, e) {var n = v(t);return this.startOf(e) <= n && n <= this.endOf(e);}, $.isAfter = function (t, e) {return v(t) < this.startOf(e);}, $.isBefore = function (t, e) {return this.endOf(e) < v(t);}, $.$g = function (t, e, n) {return g.u(t) ? this[e] : this.set(n, t);}, $.unix = function () {return Math.floor(this.valueOf() / 1e3);}, $.valueOf = function () {return this.$d.getTime();}, $.startOf = function (t, a) {var h = this,c = !!g.u(a) || a,d = g.p(t),$ = function $(t, e) {var n = g.w(h.$u ? Date.UTC(h.$y, e, t) : new Date(h.$y, e, t), h);return c ? n : n.endOf(i);},l = function l(t, e) {return g.w(h.toDate()[t].apply(h.toDate("s"), (c ? [0, 0, 0, 0] : [23, 59, 59, 999]).slice(e)), h);},y = this.$W,M = this.$M,m = this.$D,D = "set" + (this.$u ? "UTC" : "");switch (d) {case o:return c ? $(1, 0) : $(31, 11);case u:return c ? $(1, M) : $(0, M + 1);case s:var v = this.$locale().weekStart || 0,S = (y < v ? y + 7 : y) - v;return $(c ? m - S : m + (6 - S), M);case i:case f:return l(D + "Hours", 0);case r:return l(D + "Minutes", 1);case n:return l(D + "Seconds", 2);case e:return l(D + "Milliseconds", 3);default:return this.clone();}}, $.endOf = function (t) {return this.startOf(t, !1);}, $.$set = function (s, a) {var h,c = g.p(s),d = "set" + (this.$u ? "UTC" : ""),$ = (h = {}, h[i] = d + "Date", h[f] = d + "Date", h[u] = d + "Month", h[o] = d + "FullYear", h[r] = d + "Hours", h[n] = d + "Minutes", h[e] = d + "Seconds", h[t] = d + "Milliseconds", h)[c],l = c === i ? this.$D + (a - this.$W) : a;if (c === u || c === o) {var y = this.clone().set(f, 1);y.$d[$](l), y.init(), this.$d = y.set(f, Math.min(this.$D, y.daysInMonth())).$d;} else $ && this.$d[$](l);return this.init(), this;}, $.set = function (t, e) {return this.clone().$set(t, e);}, $.get = function (t) {return this[g.p(t)]();}, $.add = function (t, a) {var f,h = this;t = Number(t);var c = g.p(a),d = function d(e) {var n = v(h);return g.w(n.date(n.date() + Math.round(e * t)), h);};if (c === u) return this.set(u, this.$M + t);if (c === o) return this.set(o, this.$y + t);if (c === i) return d(1);if (c === s) return d(7);var $ = (f = {}, f[n] = 6e4, f[r] = 36e5, f[e] = 1e3, f)[c] || 1,l = this.$d.getTime() + t * $;return g.w(l, this);}, $.subtract = function (t, e) {return this.add(-1 * t, e);}, $.format = function (t) {var e = this;if (!this.isValid()) return "Invalid Date";var n = t || "YYYY-MM-DDTHH:mm:ssZ",r = g.z(this),i = this.$locale(),s = this.$H,u = this.$m,a = this.$M,o = i.weekdays,f = i.months,h = function h(t, r, i, s) {return t && (t[r] || t(e, n)) || i[r].substr(0, s);},d = function d(t) {return g.s(s % 12 || 12, t, "0");},$ = i.meridiem || function (t, e, n) {var r = t < 12 ? "AM" : "PM";return n ? r.toLowerCase() : r;},l = { YY: String(this.$y).slice(-2), YYYY: this.$y, M: a + 1, MM: g.s(a + 1, 2, "0"), MMM: h(i.monthsShort, a, f, 3), MMMM: h(f, a), D: this.$D, DD: g.s(this.$D, 2, "0"), d: String(this.$W), dd: h(i.weekdaysMin, this.$W, o, 2), ddd: h(i.weekdaysShort, this.$W, o, 3), dddd: o[this.$W], H: String(s), HH: g.s(s, 2, "0"), h: d(1), hh: d(2), a: $(s, u, !0), A: $(s, u, !1), m: String(u), mm: g.s(u, 2, "0"), s: String(this.$s), ss: g.s(this.$s, 2, "0"), SSS: g.s(this.$ms, 3, "0"), Z: r };return n.replace(c, function (t, e) {return e || l[t] || r.replace(":", "");});}, $.utcOffset = function () {return 15 * -Math.round(this.$d.getTimezoneOffset() / 15);}, $.diff = function (t, f, h) {var c,d = g.p(f),$ = v(t),l = 6e4 * ($.utcOffset() - this.utcOffset()),y = this - $,M = g.m(this, $);return M = (c = {}, c[o] = M / 12, c[u] = M, c[a] = M / 3, c[s] = (y - l) / 6048e5, c[i] = (y - l) / 864e5, c[r] = y / 36e5, c[n] = y / 6e4, c[e] = y / 1e3, c)[d] || y, h ? M : g.a(M);}, $.daysInMonth = function () {return this.endOf(u).$D;}, $.$locale = function () {return M[this.$L];}, $.locale = function (t, e) {if (!t) return this.$L;var n = this.clone(),r = D(t, e, !0);return r && (n.$L = r), n;}, $.clone = function () {return g.w(this.$d, this);}, $.toDate = function () {return new Date(this.valueOf());}, $.toJSON = function () {return this.isValid() ? this.toISOString() : null;}, $.toISOString = function () {return this.$d.toISOString();}, $.toString = function () {return this.$d.toUTCString();}, d;}(),p = S.prototype;return v.prototype = p, [["$ms", t], ["$s", e], ["$m", n], ["$H", r], ["$W", i], ["$M", u], ["$y", o], ["$D", f]].forEach(function (t) {p[t[1]] = function (e) {return this.$g(e, t[0], t[1]);};}), v.extend = function (t, e) {return t(e, S, v), v;}, v.locale = D, v.isDayjs = m, v.unix = function (t) {return v(1e3 * t);}, v.en = M[y], v.Ls = M, v.p = {}, v;});
+
+/***/ }),
+
+/***/ 14:
+/*!*******************************************************!*\
+  !*** D:/code/p/Item/tally-uni/pages/lib/idCreator.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var n = uni.getStorage({
+  key: 'maxId',
+  success: function success(res) {
+    return res;
+  } }) ||
+0;
+
+var IdCreator = function IdCreator() {
+  n += 1;
+  uni.setStorage({ key: 'maxId', data: n });
+  return n;
+};var _default =
+
+IdCreator;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -8661,7 +8686,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_NAME":"tally-uni","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"tally-uni","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8682,14 +8707,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_NAME":"tally-uni","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"tally-uni","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_NAME":"tally-uni","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"tally-uni","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8775,7 +8800,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_NAME":"tally-uni","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"tally-uni","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9224,7 +9249,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 69:
+/***/ 71:
 /*!******************************************************************!*\
   !*** D:/code/p/Item/tally-uni/pages/lib/Money/moneyFooterlib.js ***!
   \******************************************************************/
@@ -9232,7 +9257,7 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _this = void 0;var result = '0';
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var result = '0';
 var moneyFooterlib = {
   clickNumberPad: function clickNumberPad(e, $store) {
     var value = e.$orig;
@@ -9259,7 +9284,13 @@ var moneyFooterlib = {
         }
         return result;
       case 'ok':
-        console.log(_this.$store.state);
+        console.log($store.state);
+        $store.commit('updateDataList', {
+          type: $store.state.type,
+          amount: $store.state.amount,
+          date: $store.state.date,
+          beSelectedTags: $store.state.beSelectedTags });
+
         return;
       case "0":
         if (result.indexOf("0") === 0 && result.indexOf('.') === -1) {
@@ -9285,18 +9316,7 @@ moneyFooterlib;exports.default = _default;
 
 /***/ }),
 
-/***/ 70:
-/*!****************************************************************!*\
-  !*** D:/code/p/Item/tally-uni/node_modules/dayjs/dayjs.min.js ***!
-  \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-!function (t, e) { true ? module.exports = e() : undefined;}(this, function () {"use strict";var t = "millisecond",e = "second",n = "minute",r = "hour",i = "day",s = "week",u = "month",a = "quarter",o = "year",f = "date",h = /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[^0-9]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?.?(\d+)?$/,c = /\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,d = { name: "en", weekdays: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"), months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_") },$ = function $(t, e, n) {var r = String(t);return !r || r.length >= e ? t : "" + Array(e + 1 - r.length).join(n) + t;},l = { s: $, z: function z(t) {var e = -t.utcOffset(),n = Math.abs(e),r = Math.floor(n / 60),i = n % 60;return (e <= 0 ? "+" : "-") + $(r, 2, "0") + ":" + $(i, 2, "0");}, m: function t(e, n) {if (e.date() < n.date()) return -t(n, e);var r = 12 * (n.year() - e.year()) + (n.month() - e.month()),i = e.clone().add(r, u),s = n - i < 0,a = e.clone().add(r + (s ? -1 : 1), u);return +(-(r + (n - i) / (s ? i - a : a - i)) || 0);}, a: function a(t) {return t < 0 ? Math.ceil(t) || 0 : Math.floor(t);}, p: function p(h) {return { M: u, y: o, w: s, d: i, D: f, h: r, m: n, s: e, ms: t, Q: a }[h] || String(h || "").toLowerCase().replace(/s$/, "");}, u: function u(t) {return void 0 === t;} },y = "en",M = {};M[y] = d;var m = function m(t) {return t instanceof S;},D = function D(t, e, n) {var r;if (!t) return y;if ("string" == typeof t) M[t] && (r = t), e && (M[t] = e, r = t);else {var i = t.name;M[i] = t, r = i;}return !n && r && (y = r), r || !n && y;},v = function v(t, e) {if (m(t)) return t.clone();var n = "object" == typeof e ? e : {};return n.date = t, n.args = arguments, new S(n);},g = l;g.l = D, g.i = m, g.w = function (t, e) {return v(t, { locale: e.$L, utc: e.$u, x: e.$x, $offset: e.$offset });};var S = function () {function d(t) {this.$L = D(t.locale, null, !0), this.parse(t);}var $ = d.prototype;return $.parse = function (t) {this.$d = function (t) {var e = t.date,n = t.utc;if (null === e) return new Date(NaN);if (g.u(e)) return new Date();if (e instanceof Date) return new Date(e);if ("string" == typeof e && !/Z$/i.test(e)) {var r = e.match(h);if (r) {var i = r[2] - 1 || 0,s = (r[7] || "0").substring(0, 3);return n ? new Date(Date.UTC(r[1], i, r[3] || 1, r[4] || 0, r[5] || 0, r[6] || 0, s)) : new Date(r[1], i, r[3] || 1, r[4] || 0, r[5] || 0, r[6] || 0, s);}}return new Date(e);}(t), this.$x = t.x || {}, this.init();}, $.init = function () {var t = this.$d;this.$y = t.getFullYear(), this.$M = t.getMonth(), this.$D = t.getDate(), this.$W = t.getDay(), this.$H = t.getHours(), this.$m = t.getMinutes(), this.$s = t.getSeconds(), this.$ms = t.getMilliseconds();}, $.$utils = function () {return g;}, $.isValid = function () {return !("Invalid Date" === this.$d.toString());}, $.isSame = function (t, e) {var n = v(t);return this.startOf(e) <= n && n <= this.endOf(e);}, $.isAfter = function (t, e) {return v(t) < this.startOf(e);}, $.isBefore = function (t, e) {return this.endOf(e) < v(t);}, $.$g = function (t, e, n) {return g.u(t) ? this[e] : this.set(n, t);}, $.unix = function () {return Math.floor(this.valueOf() / 1e3);}, $.valueOf = function () {return this.$d.getTime();}, $.startOf = function (t, a) {var h = this,c = !!g.u(a) || a,d = g.p(t),$ = function $(t, e) {var n = g.w(h.$u ? Date.UTC(h.$y, e, t) : new Date(h.$y, e, t), h);return c ? n : n.endOf(i);},l = function l(t, e) {return g.w(h.toDate()[t].apply(h.toDate("s"), (c ? [0, 0, 0, 0] : [23, 59, 59, 999]).slice(e)), h);},y = this.$W,M = this.$M,m = this.$D,D = "set" + (this.$u ? "UTC" : "");switch (d) {case o:return c ? $(1, 0) : $(31, 11);case u:return c ? $(1, M) : $(0, M + 1);case s:var v = this.$locale().weekStart || 0,S = (y < v ? y + 7 : y) - v;return $(c ? m - S : m + (6 - S), M);case i:case f:return l(D + "Hours", 0);case r:return l(D + "Minutes", 1);case n:return l(D + "Seconds", 2);case e:return l(D + "Milliseconds", 3);default:return this.clone();}}, $.endOf = function (t) {return this.startOf(t, !1);}, $.$set = function (s, a) {var h,c = g.p(s),d = "set" + (this.$u ? "UTC" : ""),$ = (h = {}, h[i] = d + "Date", h[f] = d + "Date", h[u] = d + "Month", h[o] = d + "FullYear", h[r] = d + "Hours", h[n] = d + "Minutes", h[e] = d + "Seconds", h[t] = d + "Milliseconds", h)[c],l = c === i ? this.$D + (a - this.$W) : a;if (c === u || c === o) {var y = this.clone().set(f, 1);y.$d[$](l), y.init(), this.$d = y.set(f, Math.min(this.$D, y.daysInMonth())).$d;} else $ && this.$d[$](l);return this.init(), this;}, $.set = function (t, e) {return this.clone().$set(t, e);}, $.get = function (t) {return this[g.p(t)]();}, $.add = function (t, a) {var f,h = this;t = Number(t);var c = g.p(a),d = function d(e) {var n = v(h);return g.w(n.date(n.date() + Math.round(e * t)), h);};if (c === u) return this.set(u, this.$M + t);if (c === o) return this.set(o, this.$y + t);if (c === i) return d(1);if (c === s) return d(7);var $ = (f = {}, f[n] = 6e4, f[r] = 36e5, f[e] = 1e3, f)[c] || 1,l = this.$d.getTime() + t * $;return g.w(l, this);}, $.subtract = function (t, e) {return this.add(-1 * t, e);}, $.format = function (t) {var e = this;if (!this.isValid()) return "Invalid Date";var n = t || "YYYY-MM-DDTHH:mm:ssZ",r = g.z(this),i = this.$locale(),s = this.$H,u = this.$m,a = this.$M,o = i.weekdays,f = i.months,h = function h(t, r, i, s) {return t && (t[r] || t(e, n)) || i[r].substr(0, s);},d = function d(t) {return g.s(s % 12 || 12, t, "0");},$ = i.meridiem || function (t, e, n) {var r = t < 12 ? "AM" : "PM";return n ? r.toLowerCase() : r;},l = { YY: String(this.$y).slice(-2), YYYY: this.$y, M: a + 1, MM: g.s(a + 1, 2, "0"), MMM: h(i.monthsShort, a, f, 3), MMMM: h(f, a), D: this.$D, DD: g.s(this.$D, 2, "0"), d: String(this.$W), dd: h(i.weekdaysMin, this.$W, o, 2), ddd: h(i.weekdaysShort, this.$W, o, 3), dddd: o[this.$W], H: String(s), HH: g.s(s, 2, "0"), h: d(1), hh: d(2), a: $(s, u, !0), A: $(s, u, !1), m: String(u), mm: g.s(u, 2, "0"), s: String(this.$s), ss: g.s(this.$s, 2, "0"), SSS: g.s(this.$ms, 3, "0"), Z: r };return n.replace(c, function (t, e) {return e || l[t] || r.replace(":", "");});}, $.utcOffset = function () {return 15 * -Math.round(this.$d.getTimezoneOffset() / 15);}, $.diff = function (t, f, h) {var c,d = g.p(f),$ = v(t),l = 6e4 * ($.utcOffset() - this.utcOffset()),y = this - $,M = g.m(this, $);return M = (c = {}, c[o] = M / 12, c[u] = M, c[a] = M / 3, c[s] = (y - l) / 6048e5, c[i] = (y - l) / 864e5, c[r] = y / 36e5, c[n] = y / 6e4, c[e] = y / 1e3, c)[d] || y, h ? M : g.a(M);}, $.daysInMonth = function () {return this.endOf(u).$D;}, $.$locale = function () {return M[this.$L];}, $.locale = function (t, e) {if (!t) return this.$L;var n = this.clone(),r = D(t, e, !0);return r && (n.$L = r), n;}, $.clone = function () {return g.w(this.$d, this);}, $.toDate = function () {return new Date(this.valueOf());}, $.toJSON = function () {return this.isValid() ? this.toISOString() : null;}, $.toISOString = function () {return this.$d.toISOString();}, $.toString = function () {return this.$d.toUTCString();}, d;}(),p = S.prototype;return v.prototype = p, [["$ms", t], ["$s", e], ["$m", n], ["$H", r], ["$W", i], ["$M", u], ["$y", o], ["$D", f]].forEach(function (t) {p[t[1]] = function (e) {return this.$g(e, t[0], t[1]);};}), v.extend = function (t, e) {return t(e, S, v), v;}, v.locale = D, v.isDayjs = m, v.unix = function (t) {return v(1e3 * t);}, v.en = M[y], v.Ls = M, v.p = {}, v;});
-
-/***/ }),
-
-/***/ 85:
+/***/ 86:
 /*!****************************************************************!*\
   !*** D:/code/p/Item/tally-uni/components/uni-calendar/util.js ***!
   \****************************************************************/
@@ -9304,7 +9324,7 @@ moneyFooterlib;exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _calendar = _interopRequireDefault(__webpack_require__(/*! ./calendar.js */ 86));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _calendar = _interopRequireDefault(__webpack_require__(/*! ./calendar.js */ 87));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
 
 Calendar = /*#__PURE__*/function () {
   function Calendar()
@@ -9659,7 +9679,7 @@ Calendar;exports.default = _default;
 
 /***/ }),
 
-/***/ 86:
+/***/ 87:
 /*!********************************************************************!*\
   !*** D:/code/p/Item/tally-uni/components/uni-calendar/calendar.js ***!
   \********************************************************************/

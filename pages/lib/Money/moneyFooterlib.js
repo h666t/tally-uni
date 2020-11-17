@@ -25,7 +25,13 @@ const moneyFooterlib={
         }
         return result;
       case 'ok':
-        console.log(this.$store.state)
+        console.log($store.state)
+        $store.commit('updateDataList',{
+          type:$store.state.type,
+          amount:$store.state.amount,
+          date:$store.state.date,
+          beSelectedTags:$store.state.beSelectedTags,
+        })
         return;
       case "0":
         if (result.indexOf("0")===0 && result.indexOf('.') === -1){

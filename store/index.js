@@ -10,7 +10,8 @@ const store = new Vuex.Store({
     amount: 0,
     date: dayjs().format('YYYY-MM-DD'),
     tags: undefined,
-    beSelectedTags:[]
+    beSelectedTags: [],
+    dataList: []
   },
   mutations: {
     updateAmount(state, payload) {
@@ -18,31 +19,44 @@ const store = new Vuex.Store({
     },
     updateDate(state, payload) {
       state.date = payload
-      console.log(state)
     },
     updateType(state, payload) {
       state.type = payload
     },
-    fetchTags(state){
+    fetchTags(state) {
       const defaultTags = [
         {id: IdCreator(), name: '衣'},
         {id: IdCreator(), name: '食'},
         {id: IdCreator(), name: '住'},
         {id: IdCreator(), name: '行'}
       ]
-        uni.getStorage({key:'tags',success(res) {
+      uni.getStorage({
+        key: 'tags', success(res) {
           state.tags = res
-        }})
-      if (state.tags === undefined){
+        }
+      })
+      if (state.tags === undefined) {
         uni.setStorage({
-          key:'tags',data: defaultTags
+          key: 'tags', data: defaultTags
         })
         state.tags = defaultTags
       }
     },
-    updateBeSelectedTags(state,payload){
+    updateBeSelectedTags(state, payload) {
       state.beSelectedTags = payload
     },
+    updateDataList(state, payload) {
+      let dataList = []
+      // 从storage获取dataList
+      try {
+        dataList = uni.getStorageSync('dataList');
+      } catch (e) {
+        console.log(e)
+      }
+      console.log('---')
+      console.log(dataList)
+      uni.setStorage({key: 'dataList', data: [...dataList, payload]})
+    }
   },
   actions: {}
 })

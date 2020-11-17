@@ -19,7 +19,6 @@
 <script>
 import Icon from "../public/Icon"
 import idCreator from "../../lib/idCreator"
-
 export default {
   beforeCreate() {
     this.$store.commit('fetchTags')

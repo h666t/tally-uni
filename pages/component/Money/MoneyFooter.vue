@@ -9,7 +9,7 @@
       {{amount}}
     </view>
 
-    <view class="numberPad" >
+    <view class="numberPad">
       <!--      三元套三元，我吐了。。。。
                 0 / ok 键 的宽度为 45%
       -->
@@ -29,16 +29,17 @@
 import UniCalendar from "../../../components/uni-calendar/uni-calendar"
 import moneyFooterlib from '../../lib/Money/moneyFooterlib'
 import dayjs from 'dayjs'
+
 export default {
   created() { //每次打开页面重置amount
     moneyFooterlib.resetAmount()
-    this.$store.commit('updateDate',dayjs().format('YYYY-MM-DD'))
+    this.$store.commit('updateDate', dayjs().format('YYYY-MM-DD'))
   },
   components: {UniCalendar},
   data() {
     return {
       numberPadValue: [1, 2, 3, "删除", 4, 5, 6, "清零", 7, 8, 9, ".", 0, "ok"],
-      amount:'0',
+      amount: '0',
       date: this.$store.state.date,
     }
   },
@@ -47,11 +48,12 @@ export default {
       this.$refs.calendar.open()
     },
 
-    changeAmount(item){
-      this.amount = moneyFooterlib.clickNumberPad(item,this.$store)
+    changeAmount(item) {
+      this.amount = moneyFooterlib.clickNumberPad(item, this.$store)
+      this.$store.commit('updateAmount', parseFloat(this.amount))
     },
-    selectDate(e){
-      this.$store.commit('updateDate',e.fulldate)
+    selectDate(e) {
+      this.$store.commit('updateDate', e.fulldate)
       this.date = e.fulldate
     }
   },
