@@ -1975,17 +1975,18 @@ var store = new _vuex.default.Store({
       { id: (0, _idCreator.default)(), name: '住' },
       { id: (0, _idCreator.default)(), name: '行' }];
 
-      uni.getStorageSync({
-        key: 'tags', success: function success(res) {
-          state.tags = res;
-        } });
-
-      if (state.tags === undefined) {
-        uni.setStorage({
-          key: 'tags', data: defaultTags });
-
-        state.tags = defaultTags;
+      var tags;
+      // storage中存在tags
+      try {
+        tags = uni.getStorageSync('tags');
+        if (!tags) {
+          tags = defaultTags;
+          uni.setStorageSync('tags', tags);
+        }
+      } catch (e) {
+        console.log(e);
       }
+      state.tags = tags;
     },
     updateBeSelectedTags: function updateBeSelectedTags(state, payload) {
       state.beSelectedTags = payload;
@@ -2008,9 +2009,10 @@ var store = new _vuex.default.Store({
         console.log(e);
       }
       state.dataList = dataList;
-    } },
+    } } });var _default =
 
-  actions: {} });var _default =
+
+
 
 store;exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

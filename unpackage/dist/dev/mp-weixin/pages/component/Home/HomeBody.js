@@ -151,8 +151,16 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 13));functi
 //
 //
 //
-var _default = { created: function created() {this.$store.commit('fetchDataList');}, data: function data() {return { dataList: this.$store.state.dataList, thisMonth: (0, _dayjs.default)().format('YYYY-MM-DD') };}, computed: { detail: function detail() {var _this = this; //今天的记账明细
-      var result = [];this.dataList.map(function (item) {if (item.date.indexOf(_this.thisMonth) === 0) {result.push({ beSelectedTags: item.beSelectedTags, type: item.type, amount: item.amount });}});console.log(result);
+var _default = { created: function created() {this.$store.commit('fetchDataList');this.$store.commit('fetchTags');}, data: function data() {return { dataList: this.$store.state.dataList, thisMonth: (0, _dayjs.default)().format('YYYY-MM-DD'), tags: this.$store.state.tags };}, computed: { detail: function detail() {var _this = this; //今天的记账明细
+      var result = [];if (this.dataList.length > 0) {//若账单存在
+        this.dataList.map(function (item) {if (item.date.indexOf(_this.thisMonth) === 0) {var type;item.type === '支出' ? type = '-' : type = '+';
+            result.push({
+              beSelectedTags: item.beSelectedTags,
+              type: type,
+              amount: item.amount });
+          }
+        });
+      }
       return result;
     } } };exports.default = _default;
 

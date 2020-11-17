@@ -41,7 +41,7 @@
   padding: 10px;
 }
 .wrapper > .list > ._li.data-v-762a8ad6 {
-  padding: 0 20px;
+  padding: 5px 20px;
   -webkit-border-radius: 15px;
           border-radius: 15px;
   background: white;
@@ -51,5 +51,6 @@
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
           justify-content: space-between;
+  margin-bottom: 10px;
 }
 

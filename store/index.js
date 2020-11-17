@@ -30,18 +30,19 @@ const store = new Vuex.Store({
         {id: IdCreator(), name: '住'},
         {id: IdCreator(), name: '行'}
       ]
-      uni.getStorageSync({
-        key: 'tags', success(res) {
-          state.tags = res
+      let tags
+      // storage中存在tags
+      try {
+         tags = uni.getStorageSync('tags');
+        if (!tags) {
+          tags = defaultTags
+          uni.setStorageSync('tags', tags);
         }
-      })
-      if (state.tags === undefined) {
-        uni.setStorage({
-          key: 'tags', data: defaultTags
-        })
-        state.tags = defaultTags
+      } catch (e) {
+        console.log(e)
       }
-    },
+        state.tags = tags
+      },
     updateBeSelectedTags(state, payload) {
       state.beSelectedTags = payload
     },
@@ -64,7 +65,8 @@ const store = new Vuex.Store({
       }
       state.dataList = dataList
     }
-  },
-  actions: {}
-})
+    },
+
+  }
+)
 export default store

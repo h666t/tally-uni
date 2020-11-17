@@ -5,11 +5,11 @@
       <text class="input">今日收入 ￥0.00</text>
     </view>
     <ol class="list">
-      <li>
-        <text>衣</text>
+      <li v-for="(item,index) in detail" :key="index">
+        <text>{{item.beSelectedTags}}</text>
         <text>
-          <text>-</text>
-          <text>￥25</text>
+          <text>{{item.type}}</text>
+          <text>￥{{item.amount}}</text>
         </text>
       </li>
     </ol>
@@ -21,22 +21,30 @@ import dayjs from 'dayjs'
   export default {
     created() {
       this.$store.commit('fetchDataList')
+      this.$store.commit('fetchTags')
     },
     data(){
       return {
         dataList:this.$store.state.dataList,
-        thisMonth:dayjs().format('YYYY-MM-DD')
+        thisMonth:dayjs().format('YYYY-MM-DD'),
+        tags:this.$store.state.tags
       }
     },
     computed:{
       detail(){ //今天的记账明细
         let result = []
-        this.dataList.map(item=>{
-          if (item.date.indexOf(this.thisMonth)===0){
-            result.push({beSelectedTags:item.beSelectedTags,type:item.type,amount:item.amount})
-          }
-        })
-        console.log(result)
+        if (this.dataList.length > 0){ //若账单存在
+          this.dataList.map(item=>{
+            if (item.date.indexOf(this.thisMonth)===0){
+              let type
+              item.type === '支出' ? type = '-' : type =  '+'
+              result.push({
+                beSelectedTags:item.beSelectedTags,
+                type:type,
+                amount:item.amount})
+            }
+          })
+        }
         return result
       }
     }
@@ -61,11 +69,12 @@ import dayjs from 'dayjs'
     padding: 10px;
 
     > li {
-      padding: 0 20px;
+      padding: 5px 20px;
       border-radius: 15px;
       background: white;
       display: flex;
       justify-content: space-between;
+      margin-bottom: 10px;
     }
   }
 }
