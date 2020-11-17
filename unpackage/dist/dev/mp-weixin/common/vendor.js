@@ -1975,7 +1975,7 @@ var store = new _vuex.default.Store({
       { id: (0, _idCreator.default)(), name: '住' },
       { id: (0, _idCreator.default)(), name: '行' }];
 
-      uni.getStorage({
+      uni.getStorageSync({
         key: 'tags', success: function success(res) {
           state.tags = res;
         } });
@@ -1998,9 +1998,16 @@ var store = new _vuex.default.Store({
       } catch (e) {
         console.log(e);
       }
-      console.log('---');
-      console.log(dataList);
       uni.setStorage({ key: 'dataList', data: [].concat(_toConsumableArray(dataList), [payload]) });
+    },
+    fetchDataList: function fetchDataList(state) {
+      var dataList = [];
+      try {
+        dataList = uni.getStorageSync('dataList');
+      } catch (e) {
+        console.log(e);
+      }
+      state.dataList = dataList;
     } },
 
   actions: {} });var _default =

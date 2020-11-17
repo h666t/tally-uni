@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "icon": "/pages/component/public/Icon"
+  },
   "component": true
 }

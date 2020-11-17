@@ -114,7 +114,26 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
@@ -132,8 +151,13 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
-var _default =
-{};exports.default = _default;
+var _default = { created: function created() {this.$store.commit('fetchDataList');}, methods: { fetchInputOrOutputAmount: function fetchInputOrOutputAmount(type) {var dataList = this.$store.state.dataList;var thisMonth = (0, _dayjs.default)().format('YYYY-MM');var amount = 0;for (var i = 0; i < dataList.length; i++) {if (dataList[i].date.indexOf(thisMonth) === 0 && dataList[i].type === type) {amount += dataList[i].amount;}}return amount;} }, computed: {
+    outputAmount: function outputAmount() {
+      return this.fetchInputOrOutputAmount('支出');
+    },
+    inputAmount: function inputAmount() {
+      return this.fetchInputOrOutputAmount('收入');
+    } } };exports.default = _default;
 
 /***/ }),
 

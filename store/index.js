@@ -30,7 +30,7 @@ const store = new Vuex.Store({
         {id: IdCreator(), name: '住'},
         {id: IdCreator(), name: '行'}
       ]
-      uni.getStorage({
+      uni.getStorageSync({
         key: 'tags', success(res) {
           state.tags = res
         }
@@ -53,9 +53,16 @@ const store = new Vuex.Store({
       } catch (e) {
         console.log(e)
       }
-      console.log('---')
-      console.log(dataList)
       uni.setStorage({key: 'dataList', data: [...dataList, payload]})
+    },
+    fetchDataList(state){
+      let dataList = []
+      try {
+        dataList = uni.getStorageSync('dataList');
+      } catch (e) {
+        console.log(e)
+      }
+      state.dataList = dataList
     }
   },
   actions: {}

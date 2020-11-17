@@ -114,29 +114,38 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Icon = function Icon() {__webpack_require__.e(/*! require.ensure | pages/component/public/Icon */ "pages/component/public/Icon").then((function () {return resolve(__webpack_require__(/*! ../public/Icon */ 74));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
+  components: { Icon: Icon },
   created: function created() {
     this.$store.commit('updateType', '支出');
   },
@@ -155,7 +164,11 @@ var _default =
         this.$store.commit('updateType', '支出');
         this.type = '支出';
       }
+    },
+    goBack: function goBack() {
+      uni.navigateTo({ url: 'Home' });
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

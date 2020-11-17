@@ -58,6 +58,16 @@
           justify-content: center;
   background: #f8f8f8;
   padding: 10px 0;
+  position: relative;
+}
+.wrapper > .iconfont.data-v-1953883a {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
 }
 .wrapper > .output.data-v-1953883a {
   margin-right: 10px;

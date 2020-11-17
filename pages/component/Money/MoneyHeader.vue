@@ -1,6 +1,9 @@
 <template>
-<!--  点击支出-->
+<view>
+
+  <!--  点击支出-->
   <view @click="changeType" v-if="type === '支出'" class="wrapper">
+      <Icon @click="goBack" class="iconfont" icon-name="icon-baseline-close-px"/>
     <text v-for="item in text"
           :key="item"
           :class="item === '支出' ? 'output active' : 'input'"
@@ -8,8 +11,9 @@
       {{item}}
     </text>
   </view>
-<!--  点击收入-->
+  <!--  点击收入-->
   <view @click="changeType" v-else class="wrapper">
+    <Icon @click="goBack" class="iconfont" icon-name="icon-baseline-close-px"/>
     <text v-for="item in text"
           :key="item"
           :class="item === '支出' ? 'output ' : 'input active'"
@@ -17,10 +21,15 @@
       {{item}}
     </text>
   </view>
+</view>
+
+
 </template>
 
 <script>
+import Icon from "../public/Icon"
 export default {
+  components: {Icon},
   created() {
     this.$store.commit('updateType','支出')
   },
@@ -39,6 +48,9 @@ export default {
         this.$store.commit('updateType','支出')
         this.type = '支出'
       }
+    },
+    goBack(){
+      uni.navigateTo({url:'Home'})
     }
   }
 }
@@ -51,6 +63,15 @@ export default {
   justify-content: center;
   background: $uni-bg-color-grey;
   padding: 10px 0;
+  position: relative;
+  >.iconfont{
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+  }
   >.output{
     margin-right: 10px;
     position: relative;
