@@ -174,9 +174,6 @@ var _idCreator = _interopRequireDefault(__webpack_require__(/*! ../../lib/idCrea
     this.$store.commit('fetchTags');
     this.$store.commit('updateBeSelectedTags', []);
   },
-  mounted: function mounted() {
-    console.log(this.tags);
-  },
   data: function data() {
     return {
       tags: this.$store.state.tags,
@@ -194,7 +191,6 @@ var _idCreator = _interopRequireDefault(__webpack_require__(/*! ../../lib/idCrea
       };
       if (this.beSelectedTags.indexOf(id) !== -1) {
         var index = this.beSelectedTags.indexOf(id);
-        console.log(index);
         var newBeSelectedTags = _toConsumableArray(this.beSelectedTags);
         newBeSelectedTags.splice(index, 1);
         publicFn(newBeSelectedTags);

@@ -19,7 +19,7 @@
 <script>
 import dayjs from 'dayjs'
   export default {
-    created() {
+    beforeCreate() {
       this.$store.commit('fetchDataList')
       this.$store.commit('fetchTags')
     },
@@ -36,15 +36,27 @@ import dayjs from 'dayjs'
         if (this.dataList.length > 0){ //若账单存在
           this.dataList.map(item=>{
             if (item.date.indexOf(this.thisMonth)===0){
+              //重置类型
               let type
               item.type === '支出' ? type = '-' : type =  '+'
+              //重置标签名
+              let tags = []
+              item.beSelectedTags.forEach(item=>{
+                for (let i = 0; i < this.tags.length; i++){
+                  if (item === this.tags[i].id){
+                    tags.push(this.tags[i].name)
+                    break
+                  }
+                }
+              })
               result.push({
-                beSelectedTags:item.beSelectedTags,
+                beSelectedTags:tags,
                 type:type,
                 amount:item.amount})
             }
           })
         }
+        console.log(result)
         return result
       }
     }

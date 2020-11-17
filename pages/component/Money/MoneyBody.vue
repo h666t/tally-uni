@@ -24,9 +24,6 @@ export default {
     this.$store.commit('fetchTags')
     this.$store.commit('updateBeSelectedTags',[])
   },
-  mounted() {
-    console.log(this.tags)
-  },
   data() {
     return {
       tags: this.$store.state.tags,
@@ -44,7 +41,6 @@ export default {
       }
       if (this.beSelectedTags.indexOf(id) !== -1) {
         const index = this.beSelectedTags.indexOf(id)
-        console.log(index)
         const newBeSelectedTags = [...this.beSelectedTags]
         newBeSelectedTags.splice(index, 1)
         publicFn(newBeSelectedTags)

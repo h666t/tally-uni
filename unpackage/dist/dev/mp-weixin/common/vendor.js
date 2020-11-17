@@ -1947,6 +1947,11 @@ function normalizeComponent (
 var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 12));
 var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 13));
 var _idCreator = _interopRequireDefault(__webpack_require__(/*! ../pages/lib/idCreator */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}
+var defaultTags = [
+{ id: (0, _idCreator.default)(), name: '衣' },
+{ id: (0, _idCreator.default)(), name: '食' },
+{ id: (0, _idCreator.default)(), name: '住' },
+{ id: (0, _idCreator.default)(), name: '行' }];
 
 _vue.default.use(_vuex.default);
 var store = new _vuex.default.Store({
@@ -1969,22 +1974,13 @@ var store = new _vuex.default.Store({
       state.type = payload;
     },
     fetchTags: function fetchTags(state) {
-      var defaultTags = [
-      { id: (0, _idCreator.default)(), name: '衣' },
-      { id: (0, _idCreator.default)(), name: '食' },
-      { id: (0, _idCreator.default)(), name: '住' },
-      { id: (0, _idCreator.default)(), name: '行' }];
 
       var tags;
       // storage中存在tags
-      try {
-        tags = uni.getStorageSync('tags');
-        if (!tags) {
-          tags = defaultTags;
-          uni.setStorageSync('tags', tags);
-        }
-      } catch (e) {
-        console.log(e);
+      tags = uni.getStorageSync('tags');
+      if (!tags) {
+        tags = defaultTags;
+        uni.setStorageSync('tags', tags);
       }
       state.tags = tags;
     },

@@ -2,7 +2,12 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import dayjs from "dayjs"
 import IdCreator from "../pages/lib/idCreator"
-
+const defaultTags = [
+  {id: IdCreator(), name: '衣'},
+  {id: IdCreator(), name: '食'},
+  {id: IdCreator(), name: '住'},
+  {id: IdCreator(), name: '行'}
+]
 Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
@@ -24,23 +29,14 @@ const store = new Vuex.Store({
       state.type = payload
     },
     fetchTags(state) {
-      const defaultTags = [
-        {id: IdCreator(), name: '衣'},
-        {id: IdCreator(), name: '食'},
-        {id: IdCreator(), name: '住'},
-        {id: IdCreator(), name: '行'}
-      ]
+
       let tags
       // storage中存在tags
-      try {
          tags = uni.getStorageSync('tags');
         if (!tags) {
           tags = defaultTags
           uni.setStorageSync('tags', tags);
         }
-      } catch (e) {
-        console.log(e)
-      }
         state.tags = tags
       },
     updateBeSelectedTags(state, payload) {

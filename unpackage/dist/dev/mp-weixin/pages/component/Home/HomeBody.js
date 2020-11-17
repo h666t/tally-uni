@@ -151,16 +151,28 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 13));functi
 //
 //
 //
-var _default = { created: function created() {this.$store.commit('fetchDataList');this.$store.commit('fetchTags');}, data: function data() {return { dataList: this.$store.state.dataList, thisMonth: (0, _dayjs.default)().format('YYYY-MM-DD'), tags: this.$store.state.tags };}, computed: { detail: function detail() {var _this = this; //今天的记账明细
+var _default = { beforeCreate: function beforeCreate() {this.$store.commit('fetchDataList');this.$store.commit('fetchTags');}, data: function data() {return { dataList: this.$store.state.dataList, thisMonth: (0, _dayjs.default)().format('YYYY-MM-DD'), tags: this.$store.state.tags };}, computed: { detail: function detail() {var _this = this; //今天的记账明细
       var result = [];if (this.dataList.length > 0) {//若账单存在
-        this.dataList.map(function (item) {if (item.date.indexOf(_this.thisMonth) === 0) {var type;item.type === '支出' ? type = '-' : type = '+';
+        this.dataList.map(function (item) {if (item.date.indexOf(_this.thisMonth) === 0) {//重置类型
+            var type;item.type === '支出' ? type = '-' : type = '+';
+            //重置标签名
+            var tags = [];
+            item.beSelectedTags.forEach(function (item) {
+              for (var i = 0; i < _this.tags.length; i++) {
+                if (item === _this.tags[i].id) {
+                  tags.push(_this.tags[i].name);
+                  break;
+                }
+              }
+            });
             result.push({
-              beSelectedTags: item.beSelectedTags,
+              beSelectedTags: tags,
               type: type,
               amount: item.amount });
           }
         });
       }
+      console.log(result);
       return result;
     } } };exports.default = _default;
 
