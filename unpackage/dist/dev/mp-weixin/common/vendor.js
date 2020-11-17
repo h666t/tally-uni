@@ -9284,14 +9284,15 @@ var moneyFooterlib = {
         }
         return result;
       case 'ok':
-        console.log($store.state);
+        result = 0;
         $store.commit('updateDataList', {
           type: $store.state.type,
           amount: $store.state.amount,
           date: $store.state.date,
           beSelectedTags: $store.state.beSelectedTags });
 
-        return;
+        $store.commit('updateAmount', 0);
+        return result;
       case "0":
         if (result.indexOf("0") === 0 && result.indexOf('.') === -1) {
           return;

@@ -31,26 +31,33 @@ import moneyFooterlib from '../../lib/Money/moneyFooterlib'
 import dayjs from 'dayjs'
 
 export default {
-  created() { //每次打开页面重置amount
+  created() { //每次打开页面重置amount / date
     moneyFooterlib.resetAmount()
     this.$store.commit('updateDate', dayjs().format('YYYY-MM-DD'))
+    this.$store.commit('updateAmount',0)
   },
   components: {UniCalendar},
   data() {
     return {
       numberPadValue: [1, 2, 3, "删除", 4, 5, 6, "清零", 7, 8, 9, ".", 0, "ok"],
-      amount: '0',
       date: this.$store.state.date,
+      amountForComputed:this.$store.state.amount
     }
   },
+  computed:{
+    amount(){
+      return this.$store.state.amount
+    }
+  }
+  ,
   methods: {
     openCalendar() { //打开日历
       this.$refs.calendar.open()
     },
 
     changeAmount(item) {
-      this.amount = moneyFooterlib.clickNumberPad(item, this.$store)
-      this.$store.commit('updateAmount', parseFloat(this.amount))
+      this.amountForComputed = moneyFooterlib.clickNumberPad(item, this.$store)
+      this.$store.commit('updateAmount', parseFloat(this.amountForComputed))
     },
     selectDate(e) {
       this.$store.commit('updateDate', e.fulldate)
