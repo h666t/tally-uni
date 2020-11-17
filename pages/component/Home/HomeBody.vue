@@ -16,6 +16,33 @@
   </view>
 </template>
 
+<script>
+import dayjs from 'dayjs'
+  export default {
+    created() {
+      this.$store.commit('fetchDataList')
+    },
+    data(){
+      return {
+        dataList:this.$store.state.dataList,
+        thisMonth:dayjs().format('YYYY-MM-DD')
+      }
+    },
+    computed:{
+      detail(){ //今天的记账明细
+        let result = []
+        this.dataList.map(item=>{
+          if (item.date.indexOf(this.thisMonth)===0){
+            result.push({beSelectedTags:item.beSelectedTags,type:item.type,amount:item.amount})
+          }
+        })
+        console.log(result)
+        return result
+      }
+    }
+  }
+</script>
+
 <style scoped lang="scss">
 .wrapper {
   .header {

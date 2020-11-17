@@ -114,7 +114,47 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {};exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = { created: function created() {this.$store.commit('fetchDataList');}, data: function data() {return { dataList: this.$store.state.dataList, thisMonth: (0, _dayjs.default)().format('YYYY-MM-DD') };}, computed: { detail: function detail() {var _this = this; //今天的记账明细
+      var result = [];this.dataList.map(function (item) {if (item.date.indexOf(_this.thisMonth) === 0) {result.push({ beSelectedTags: item.beSelectedTags, type: item.type, amount: item.amount });}});console.log(result);
+      return result;
+    } } };exports.default = _default;
 
 /***/ }),
 

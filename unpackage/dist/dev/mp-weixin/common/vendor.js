@@ -9264,7 +9264,7 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var result = '0';
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var result = '0';
 var moneyFooterlib = {
   clickNumberPad: function clickNumberPad(e, $store) {
     var value = e.$orig;
@@ -9292,6 +9292,12 @@ var moneyFooterlib = {
         return result;
       case 'ok':
         result = 0;
+        if ($store.state.beSelectedTags.length === 0) {
+          uni.showModal({
+            title: '请至少选择一个标签' });
+
+          return;
+        }
         $store.commit('updateDataList', {
           type: $store.state.type,
           amount: $store.state.amount,
@@ -9321,6 +9327,7 @@ var moneyFooterlib = {
 
 
 moneyFooterlib;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

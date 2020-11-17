@@ -1,6 +1,5 @@
 <template>
 <view>
-
   <!--  点击支出-->
   <view @click="changeType" v-if="type === '支出'" class="wrapper">
       <Icon @click="goBack" class="iconfont" icon-name="icon-baseline-close-px"/>

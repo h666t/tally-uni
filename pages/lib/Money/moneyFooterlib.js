@@ -26,6 +26,12 @@ const moneyFooterlib = {
         return result;
       case 'ok':
         result = 0
+        if ($store.state.beSelectedTags.length === 0){
+          uni.showModal({
+            title:'请至少选择一个标签'
+          })
+          return ;
+        }
         $store.commit('updateDataList', {
           type: $store.state.type,
           amount: $store.state.amount,
