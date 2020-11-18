@@ -20,29 +20,22 @@
 
 <script>
 import dayjs from 'dayjs'
+import moneyFooterlib from "../../lib/Money/moneyFooterlib"
 export default {
   created() {
     this.$store.commit('fetchDataList')
   },
-  methods:{
-    fetchInputOrOutputAmount(type){
-      const {dataList} = this.$store.state
-      const thisMonth = dayjs().format('YYYY-MM')
-      let amount = 0
-      for (let i = 0; i < dataList.length; i++){
-        if (dataList[i].date.indexOf(thisMonth) === 0 && dataList[i].type === type){
-          amount += dataList[i].amount
-        }
-      }
-      return amount
+  data(){
+    return {
+      thisMonth: dayjs().format('YYYY-MM')
     }
   },
   computed:{
     outputAmount(){
-       return this.fetchInputOrOutputAmount('支出')
+      return moneyFooterlib.fetchSpecialDateAmount('支出',this.thisMonth,this.$store)
     },
     inputAmount(){
-      return this.fetchInputOrOutputAmount('收入')
+      return moneyFooterlib.fetchSpecialDateAmount('收入',this.thisMonth,this.$store)
     }
   },
 

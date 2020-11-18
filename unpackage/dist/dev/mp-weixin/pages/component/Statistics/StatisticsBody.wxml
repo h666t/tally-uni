@@ -1,0 +1,1 @@
+<view class="wrapper data-v-04849e54"><view class="header data-v-04849e54"><text class="date data-v-04849e54">{{thisMonth}}</text><view class="inputAndOutput data-v-04849e54"><text class="output data-v-04849e54">支出：￥25.00</text><text class="input data-v-04849e54">收入：￥25.00</text></view></view></view>

@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "统计",
-  "usingComponents": {}
+  "usingComponents": {
+    "statistics-body": "/pages/component/Statistics/StatisticsBody",
+    "statistics-header": "/pages/component/Statistics/StatisticsHeader"
+  }
 }

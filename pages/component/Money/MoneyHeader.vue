@@ -2,7 +2,7 @@
 <view>
   <!--  点击支出-->
   <view @click="changeType" v-if="type === '支出'" class="wrapper">
-      <Icon @click="goBack" class="iconfont" icon-name="icon-baseline-close-px"/>
+      <Icon @click="goBack" class="iconfont" icon-name="icon-left_3"/>
     <text v-for="item in text"
           :key="item"
           :class="item === '支出' ? 'output active' : 'input'"
@@ -12,7 +12,7 @@
   </view>
   <!--  点击收入-->
   <view @click="changeType" v-else class="wrapper">
-    <Icon @click="goBack" class="iconfont" icon-name="icon-baseline-close-px"/>
+    <Icon @click="goBack" class="iconfont" icon-name="icon-left_3"/>
     <text v-for="item in text"
           :key="item"
           :class="item === '支出' ? 'output ' : 'input active'"
@@ -63,6 +63,7 @@ export default {
   background: $uni-bg-color-grey;
   padding: 10px 0;
   position: relative;
+  border-bottom: 1px solid rgba(0,0,0,0.25);
   >.iconfont{
     position: absolute;
     left: 20px;

@@ -1,1 +1,1 @@
-<view class="data-v-67078b19">statistics</view>
+<view class="wrapper data-v-67078b19"><statistics-header vue-id="79ea590d-1" class="data-v-67078b19" bind:__l="__l"></statistics-header><statistics-body vue-id="79ea590d-2" class="data-v-67078b19" bind:__l="__l"></statistics-body></view>

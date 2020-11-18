@@ -1,0 +1,1 @@
+<view class="wrapper data-v-431cf541"><icon class="iconfont data-v-431cf541" icon-name="icon-left_3" data-event-opts="{{[['tap',[['goback',['$event']]]]]}}" bindtap="__e"></icon><text class="data-v-431cf541">账单详情</text></view>

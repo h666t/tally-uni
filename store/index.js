@@ -29,7 +29,6 @@ const store = new Vuex.Store({
       state.type = payload
     },
     fetchTags(state) {
-
       let tags
       // storage中存在tags
          tags = uni.getStorageSync('tags');
