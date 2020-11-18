@@ -81,6 +81,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  if (!_vm._isMounted) {
+    _vm.e0 = function(item) {
+      var args = [],
+        len = arguments.length - 1
+      while (len-- > 0) args[len] = arguments[len + 1]
+
+      var _temp = args[args.length - 1].currentTarget.dataset,
+        _temp2 = _temp.eventParams || _temp["event-params"],
+        item = _temp2.item
+
+      var _temp, _temp2
+
+      _vm.changeDate(item)
+    }
+  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -135,8 +150,19 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 13));
-var _moneyFooterlib = _interopRequireDefault(__webpack_require__(/*! ../../lib/Money/moneyFooterlib */ 44));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+
+
+
+
+
+
+
+
+
+
+var _moneyFooterlib = _interopRequireDefault(__webpack_require__(/*! ../../lib/Money/moneyFooterlib */ 44));
+
+var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
@@ -156,15 +182,17 @@ var _moneyFooterlib = _interopRequireDefault(__webpack_require__(/*! ../../lib/M
 //
 //
 //
-var Icon = function Icon() {__webpack_require__.e(/*! require.ensure | pages/component/public/Icon */ "pages/component/public/Icon").then((function () {return resolve(__webpack_require__(/*! ../public/Icon */ 96));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { Icon: Icon }, created: function created() {this.$store.commit('fetchDataList');}, data: function data() {return { thisMonth: (0, _dayjs.default)().format('YYYY年MM月'), isShowCalendar: false };}, computed: { inputAmount: function inputAmount() {return _moneyFooterlib.default.fetchSpecialDateAmount('收入', (0, _dayjs.default)().format('YYYY-MM'), this.$store);}, outputAmount: function outputAmount() {return _moneyFooterlib.default.fetchSpecialDateAmount('支出', (0, _dayjs.default)().format('YYYY-MM'), this.$store);}, allDate: function allDate() {
-      var dataList = this.$store.state.dataList;
-      var result = [];
-      if (dataList.length > 0) {
-        result = [];
-        dataList.forEach(function (item) {
-          var year = item.date.substring(0, 4);
-          if (result.indexOf(year) === -1) {
-            result.push(year);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var Icon = function Icon() {__webpack_require__.e(/*! require.ensure | pages/component/public/Icon */ "pages/component/public/Icon").then((function () {return resolve(__webpack_require__(/*! ../public/Icon */ 96));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { Icon: Icon }, created: function created() {this.$store.commit('fetchDataList');console.log(this.date);}, data: function data() {return { isShowCalendar: false };}, props: { date: { type: String } }, computed: { inputAmount: function inputAmount() {return _moneyFooterlib.default.fetchSpecialDateAmount('收入', this.date, this.$store);}, outputAmount: function outputAmount() {return _moneyFooterlib.default.fetchSpecialDateAmount('支出', this.date, this.$store);}, allDate: function allDate() {var dataList = this.$store.state.dataList;var result = [];if (dataList.length > 0) {result = [];dataList.forEach(function (item) {var year = item.date.substring(0, 4);if (result.indexOf(year) === -1) {result.push(year);
           }
         });
       } else {
@@ -177,6 +205,16 @@ var Icon = function Icon() {__webpack_require__.e(/*! require.ensure | pages/com
   methods: {
     switchShowCalendar: function switchShowCalendar() {
       this.isShowCalendar = !this.isShowCalendar;
+    },
+    changeDate: function changeDate(value) {
+      if (value !== '暂无数据') {
+        console.log('hi');
+        this.$emit('update:date', value);
+      }
+    },
+    resetDate: function resetDate() {
+      this.$emit('update:date', (0, _dayjs.default)().format('YYYY-MM'));
+      this.isShowCalendar = false;
     } } };exports.default = _default;
 
 /***/ }),

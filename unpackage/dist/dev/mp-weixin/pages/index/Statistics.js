@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var StatisticsHeader = function StatisticsHeader() {__webpack_require__.e(/*! require.ensure | pages/component/Statistics/StatisticsHeader */ "pages/component/Statistics/StatisticsHeader").then((function () {return resolve(__webpack_require__(/*! ../component/Statistics/StatisticsHeader */ 82));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var StatisticsBody = function StatisticsBody() {Promise.all(/*! require.ensure | pages/component/Statistics/StatisticsBody */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/component/Statistics/StatisticsBody")]).then((function () {return resolve(__webpack_require__(/*! ../component/Statistics/StatisticsBody */ 89));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -140,8 +140,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var StatisticsHeader = function StatisticsHeader() {__webpack_require__.e(/*! require.ensure | pages/component/Statistics/StatisticsHeader */ "pages/component/Statistics/StatisticsHeader").then((function () {return resolve(__webpack_require__(/*! ../component/Statistics/StatisticsHeader */ 82));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var StatisticsBody = function StatisticsBody() {Promise.all(/*! require.ensure | pages/component/Statistics/StatisticsBody */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/component/Statistics/StatisticsBody")]).then((function () {return resolve(__webpack_require__(/*! ../component/Statistics/StatisticsBody */ 89));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
-  components: { StatisticsBody: StatisticsBody, StatisticsHeader: StatisticsHeader } };exports.default = _default;
+  components: { StatisticsBody: StatisticsBody, StatisticsHeader: StatisticsHeader },
+  data: function data() {
+    return {
+      date: (0, _dayjs.default)().format('YYYY-MM') };
+
+  } };exports.default = _default;
 
 /***/ }),
 
