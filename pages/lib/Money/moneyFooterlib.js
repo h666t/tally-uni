@@ -62,10 +62,8 @@ const moneyFooterlib = {
   },
   fetchSpecialDateAmount(type,date,$store){
     const {dataList} = $store.state
-    console.log('---')
     let amount = 0
     for (let i = 0; i < dataList.length; i++){
-      console.log(dataList[i].date.indexOf(date))
       if (dataList[i].date.indexOf(date) >= 0 && dataList[i].type === type){
         amount += dataList[i].amount
       }

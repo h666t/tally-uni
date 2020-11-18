@@ -1,8 +1,8 @@
 <template>
   <view class="wrapper">
     <view class="header">
-      <text class="output">今日支出 ￥0.00</text>
-      <text class="input">今日收入 ￥0.00</text>
+      <text class="output">今日支出 ￥{{todayOutput}}</text>
+      <text class="input">今日收入 ￥{{todayInput}}</text>
     </view>
     <ol class="list">
       <li v-for="(item,index) in detail" :key="index">
@@ -18,6 +18,7 @@
 
 <script>
 import dayjs from 'dayjs'
+import moneyFooterlib from "../../lib/Money/moneyFooterlib"
   export default {
     beforeCreate() {
       this.$store.commit('fetchDataList')
@@ -58,6 +59,12 @@ import dayjs from 'dayjs'
         }
         console.log(result)
         return result
+      },
+      todayInput(){
+        return moneyFooterlib.fetchSpecialDateAmount('收入',dayjs().format('YYYY-MM-DD'),this.$store)
+      },
+      todayOutput(){
+        return moneyFooterlib.fetchSpecialDateAmount('支出',dayjs().format('YYYY-MM-DD'),this.$store)
       }
     }
   }

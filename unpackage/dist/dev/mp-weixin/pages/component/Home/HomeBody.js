@@ -133,7 +133,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 13));
+var _moneyFooterlib = _interopRequireDefault(__webpack_require__(/*! ../../lib/Money/moneyFooterlib */ 44));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
@@ -174,6 +175,12 @@ var _default = { beforeCreate: function beforeCreate() {this.$store.commit('fetc
       }
       console.log(result);
       return result;
+    },
+    todayInput: function todayInput() {
+      return _moneyFooterlib.default.fetchSpecialDateAmount('收入', (0, _dayjs.default)().format('YYYY-MM-DD'), this.$store);
+    },
+    todayOutput: function todayOutput() {
+      return _moneyFooterlib.default.fetchSpecialDateAmount('支出', (0, _dayjs.default)().format('YYYY-MM-DD'), this.$store);
     } } };exports.default = _default;
 
 /***/ }),

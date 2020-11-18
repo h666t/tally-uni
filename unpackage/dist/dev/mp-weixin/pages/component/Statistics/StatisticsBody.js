@@ -127,7 +127,16 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+
+
+
+
+
+
+
+
+var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 13));
+var _moneyFooterlib = _interopRequireDefault(__webpack_require__(/*! ../../lib/Money/moneyFooterlib */ 44));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
@@ -139,7 +148,36 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 13));functi
 //
 //
 //
-var _default = { created: function created() {this.$store.commit('fetchDataList');}, data: function data() {return { thisMonth: (0, _dayjs.default)().format('YYYY年MM月') };} };exports.default = _default;
+//
+//
+//
+//
+//
+//
+//
+//
+var Icon = function Icon() {__webpack_require__.e(/*! require.ensure | pages/component/public/Icon */ "pages/component/public/Icon").then((function () {return resolve(__webpack_require__(/*! ../public/Icon */ 96));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { Icon: Icon }, created: function created() {this.$store.commit('fetchDataList');}, data: function data() {return { thisMonth: (0, _dayjs.default)().format('YYYY年MM月'), isShowCalendar: false };}, computed: { inputAmount: function inputAmount() {return _moneyFooterlib.default.fetchSpecialDateAmount('收入', (0, _dayjs.default)().format('YYYY-MM'), this.$store);}, outputAmount: function outputAmount() {return _moneyFooterlib.default.fetchSpecialDateAmount('支出', (0, _dayjs.default)().format('YYYY-MM'), this.$store);}, allDate: function allDate() {
+      var dataList = this.$store.state.dataList;
+      var result = [];
+      if (dataList.length > 0) {
+        result = [];
+        dataList.forEach(function (item) {
+          var year = item.date.substring(0, 4);
+          if (result.indexOf(year) === -1) {
+            result.push(year);
+          }
+        });
+      } else {
+        result.push('暂无数据');
+      }
+      result.sort();
+      return result;
+    } },
+
+  methods: {
+    switchShowCalendar: function switchShowCalendar() {
+      this.isShowCalendar = !this.isShowCalendar;
+    } } };exports.default = _default;
 
 /***/ }),
 

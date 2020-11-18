@@ -10245,10 +10245,8 @@ var moneyFooterlib = {
   },
   fetchSpecialDateAmount: function fetchSpecialDateAmount(type, date, $store) {var
     dataList = $store.state.dataList;
-    console.log('---');
     var amount = 0;
     for (var i = 0; i < dataList.length; i++) {
-      console.log(dataList[i].date.indexOf(date));
       if (dataList[i].date.indexOf(date) >= 0 && dataList[i].type === type) {
         amount += dataList[i].amount;
       }

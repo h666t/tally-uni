@@ -24,6 +24,25 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.wrapper > .calendarList.data-v-04849e54 {
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  height: 100px;
+  margin: 10px;
+  -webkit-border-radius: 15px;
+          border-radius: 15px;
+}
+.wrapper > .calendarList > ._ol.data-v-04849e54 {
+  padding: 10px;
+  overflow: auto;
+}
+.wrapper > .calendarList > ._ol > ._li.data-v-04849e54 {
+  display: inline-block;
+  background: white;
+  padding: 5px 20px;
+  -webkit-border-radius: 15px;
+          border-radius: 15px;
+  margin: 0 5px;
+}
 .wrapper > .header.data-v-04849e54 {
   padding-left: 15px;
   display: -webkit-box;
@@ -35,6 +54,7 @@
           flex-direction: column;
   background: white;
   padding-bottom: 10px;
+  position: relative;
 }
 .wrapper > .header > .date.data-v-04849e54 {
   font-weight: bold;
@@ -49,5 +69,12 @@
   -webkit-flex-direction: column;
           flex-direction: column;
   font-size: 14px;
+}
+.wrapper > .header > .iconfont.data-v-04849e54 {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  -webkit-transform: scale(2);
+          transform: scale(2);
 }
 
