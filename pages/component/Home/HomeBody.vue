@@ -76,7 +76,6 @@ import dayjs from 'dayjs'
   > .list {
     display: flex;
     flex-direction: column;
-    height: 200px;
     overflow: auto;
     padding: 10px;
 

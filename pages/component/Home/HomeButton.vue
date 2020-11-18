@@ -18,7 +18,7 @@ export default {
 .wrapper {
   position: relative;
   margin-bottom: 30px;
-
+  height: 55px;
   > button {
     position: absolute;
     right: 25px;

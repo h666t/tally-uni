@@ -9,7 +9,13 @@
 		"style": {
 			"navigationBarTitleText": "记账"
 		}
-	}],
+	},
+		{
+			"path": "pages/index/Statistics",
+			"style": {
+				"navigationBarTitleText": "统计"
+			}
+		}],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",

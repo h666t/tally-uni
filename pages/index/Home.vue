@@ -30,6 +30,7 @@ export default {
   overflow: auto;
   >.homeBodyWrapper{
     flex-grow: 1;
+    overflow: auto;
   }
   > .title {
     background: $uni-text-color;

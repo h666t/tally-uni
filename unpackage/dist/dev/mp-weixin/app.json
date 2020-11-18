@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/Home",
-    "pages/index/Money"
+    "pages/index/Money",
+    "pages/index/Statistics"
   ],
   "subPackages": [],
   "window": {

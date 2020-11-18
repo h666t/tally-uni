@@ -27,6 +27,7 @@
 .wrapper.data-v-19888d34 {
   position: relative;
   margin-bottom: 30px;
+  height: 55px;
 }
 .wrapper > button.data-v-19888d34 {
   position: absolute;

@@ -11,7 +11,9 @@
           <text class="money">￥{{inputAmount}}</text>
         </view>
       </view>
-      <text class="chartAnalyse">查看图标分析</text>
+      <navigator class="chartAnalyse" url="Statistics">
+        查看分析
+      </navigator>
     </view>
   </view>
 </template>
