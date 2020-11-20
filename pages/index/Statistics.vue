@@ -1,7 +1,9 @@
 <template>
   <view class="wrapper">
     <StatisticsHeader/>
-    <StatisticsBody :date="date" v-on:update:date="date = $event" />
+    <StatisticsBody :date="date" 
+	v-on:update:date="date = $event" />
+    <StatisticsChart :date="date"/>
   </view>
 </template>
 
@@ -9,12 +11,16 @@
 import StatisticsHeader from "../component/Statistics/StatisticsHeader"
 import StatisticsBody from "../component/Statistics/StatisticsBody"
 import dayjs from "dayjs"
+import StatisticsChart from "../component/Statistics/StatisticsChart"
 export default {
-  components: {StatisticsBody, StatisticsHeader},
+  components: {StatisticsChart, StatisticsBody, StatisticsHeader,},
   data(){
     return {
       date:dayjs().format('YYYY-MM'),
     }
+  },
+  updated() {
+    console.log(this.date)
   }
 }
 </script>

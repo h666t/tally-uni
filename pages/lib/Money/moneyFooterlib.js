@@ -69,6 +69,15 @@ const moneyFooterlib = {
       }
     }
     return amount
+  },
+  fetchSpecialDateDataList(type,date,$store){
+    const {dataList} = $store.state
+    const result = []
+    for (let i = 0; i < dataList.length; i++){
+    if (dataList[i].date.indexOf(date) >= 0 && dataList[i].type === type){
+      result.push(dataList[i])
+    }}
+    return result
   }
 }
 

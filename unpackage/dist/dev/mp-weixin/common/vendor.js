@@ -1935,7 +1935,86 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 108:
+/***/ 11:
+/*!***********************************************!*\
+  !*** D:/code/p/Item/tally-uni/store/index.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 12));
+var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 13));
+var _idCreator = _interopRequireDefault(__webpack_require__(/*! ../pages/lib/idCreator */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}
+var defaultTags = [
+{ id: (0, _idCreator.default)(), name: '衣' },
+{ id: (0, _idCreator.default)(), name: '食' },
+{ id: (0, _idCreator.default)(), name: '住' },
+{ id: (0, _idCreator.default)(), name: '行' }];
+
+_vue.default.use(_vuex.default);
+var store = new _vuex.default.Store({
+  state: {
+    type: '支出',
+    amount: 0,
+    date: (0, _dayjs.default)().format('YYYY-MM-DD'),
+    tags: undefined,
+    beSelectedTags: [],
+    dataList: [] },
+
+  mutations: {
+    updateAmount: function updateAmount(state, payload) {
+      state.amount = payload;
+    },
+    updateDate: function updateDate(state, payload) {
+      state.date = payload;
+    },
+    updateType: function updateType(state, payload) {
+      state.type = payload;
+    },
+    fetchTags: function fetchTags(state) {
+      var tags;
+      // storage中存在tags
+      tags = uni.getStorageSync('tags');
+      if (!tags) {
+        tags = defaultTags;
+        uni.setStorageSync('tags', tags);
+      }
+      state.tags = tags;
+    },
+    updateBeSelectedTags: function updateBeSelectedTags(state, payload) {
+      state.beSelectedTags = payload;
+    },
+    updateDataList: function updateDataList(state, payload) {
+      var dataList = [];
+      // 从storage获取dataList
+      try {
+        dataList = uni.getStorageSync('dataList');
+      } catch (e) {
+        console.log(e);
+      }
+      uni.setStorage({ key: 'dataList', data: [].concat(_toConsumableArray(dataList), [payload]) });
+    },
+    fetchDataList: function fetchDataList(state) {
+      var dataList = [];
+      try {
+        dataList = uni.getStorageSync('dataList');
+      } catch (e) {
+        console.log(e);
+      }
+      state.dataList = dataList;
+    } } });var _default =
+
+
+
+
+store;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 115:
 /*!****************************************************************!*\
   !*** D:/code/p/Item/tally-uni/components/uni-calendar/util.js ***!
   \****************************************************************/
@@ -1943,7 +2022,7 @@ function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _calendar = _interopRequireDefault(__webpack_require__(/*! ./calendar.js */ 109));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _calendar = _interopRequireDefault(__webpack_require__(/*! ./calendar.js */ 116));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
 
 Calendar = /*#__PURE__*/function () {
   function Calendar()
@@ -2298,7 +2377,7 @@ Calendar;exports.default = _default;
 
 /***/ }),
 
-/***/ 109:
+/***/ 116:
 /*!********************************************************************!*\
   !*** D:/code/p/Item/tally-uni/components/uni-calendar/calendar.js ***!
   \********************************************************************/
@@ -2852,85 +2931,6 @@ var calendar = {
 
 
 calendar;exports.default = _default;
-
-/***/ }),
-
-/***/ 11:
-/*!***********************************************!*\
-  !*** D:/code/p/Item/tally-uni/store/index.js ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 12));
-var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 13));
-var _idCreator = _interopRequireDefault(__webpack_require__(/*! ../pages/lib/idCreator */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}
-var defaultTags = [
-{ id: (0, _idCreator.default)(), name: '衣' },
-{ id: (0, _idCreator.default)(), name: '食' },
-{ id: (0, _idCreator.default)(), name: '住' },
-{ id: (0, _idCreator.default)(), name: '行' }];
-
-_vue.default.use(_vuex.default);
-var store = new _vuex.default.Store({
-  state: {
-    type: '支出',
-    amount: 0,
-    date: (0, _dayjs.default)().format('YYYY-MM-DD'),
-    tags: undefined,
-    beSelectedTags: [],
-    dataList: [] },
-
-  mutations: {
-    updateAmount: function updateAmount(state, payload) {
-      state.amount = payload;
-    },
-    updateDate: function updateDate(state, payload) {
-      state.date = payload;
-    },
-    updateType: function updateType(state, payload) {
-      state.type = payload;
-    },
-    fetchTags: function fetchTags(state) {
-      var tags;
-      // storage中存在tags
-      tags = uni.getStorageSync('tags');
-      if (!tags) {
-        tags = defaultTags;
-        uni.setStorageSync('tags', tags);
-      }
-      state.tags = tags;
-    },
-    updateBeSelectedTags: function updateBeSelectedTags(state, payload) {
-      state.beSelectedTags = payload;
-    },
-    updateDataList: function updateDataList(state, payload) {
-      var dataList = [];
-      // 从storage获取dataList
-      try {
-        dataList = uni.getStorageSync('dataList');
-      } catch (e) {
-        console.log(e);
-      }
-      uni.setStorage({ key: 'dataList', data: [].concat(_toConsumableArray(dataList), [payload]) });
-    },
-    fetchDataList: function fetchDataList(state) {
-      var dataList = [];
-      try {
-        dataList = uni.getStorageSync('dataList');
-      } catch (e) {
-        console.log(e);
-      }
-      state.dataList = dataList;
-    } } });var _default =
-
-
-
-
-store;exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -10252,6 +10252,15 @@ var moneyFooterlib = {
       }
     }
     return amount;
+  },
+  fetchSpecialDateDataList: function fetchSpecialDateDataList(type, date, $store) {var
+    dataList = $store.state.dataList;
+    var result = [];
+    for (var i = 0; i < dataList.length; i++) {
+      if (dataList[i].date.indexOf(date) >= 0 && dataList[i].type === type) {
+        result.push(dataList[i]);
+      }}
+    return result;
   } };var _default =
 
 

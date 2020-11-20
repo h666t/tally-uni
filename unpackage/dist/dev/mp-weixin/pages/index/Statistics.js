@@ -140,13 +140,19 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var StatisticsHeader = function StatisticsHeader() {__webpack_require__.e(/*! require.ensure | pages/component/Statistics/StatisticsHeader */ "pages/component/Statistics/StatisticsHeader").then((function () {return resolve(__webpack_require__(/*! ../component/Statistics/StatisticsHeader */ 82));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var StatisticsBody = function StatisticsBody() {Promise.all(/*! require.ensure | pages/component/Statistics/StatisticsBody */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/component/Statistics/StatisticsBody")]).then((function () {return resolve(__webpack_require__(/*! ../component/Statistics/StatisticsBody */ 89));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var StatisticsHeader = function StatisticsHeader() {__webpack_require__.e(/*! require.ensure | pages/component/Statistics/StatisticsHeader */ "pages/component/Statistics/StatisticsHeader").then((function () {return resolve(__webpack_require__(/*! ../component/Statistics/StatisticsHeader */ 82));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var StatisticsBody = function StatisticsBody() {Promise.all(/*! require.ensure | pages/component/Statistics/StatisticsBody */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/component/Statistics/StatisticsBody")]).then((function () {return resolve(__webpack_require__(/*! ../component/Statistics/StatisticsBody */ 89));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var StatisticsChart = function StatisticsChart() {__webpack_require__.e(/*! require.ensure | pages/component/Statistics/StatisticsChart */ "pages/component/Statistics/StatisticsChart").then((function () {return resolve(__webpack_require__(/*! ../component/Statistics/StatisticsChart */ 96));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
 {
-  components: { StatisticsBody: StatisticsBody, StatisticsHeader: StatisticsHeader },
+  components: { StatisticsChart: StatisticsChart, StatisticsBody: StatisticsBody, StatisticsHeader: StatisticsHeader },
   data: function data() {
     return {
       date: (0, _dayjs.default)().format('YYYY-MM') };
 
+  },
+  updated: function updated() {
+    console.log(this.date);
   } };exports.default = _default;
 
 /***/ }),
