@@ -71,7 +71,7 @@
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  padding: 5px 20px;
+  padding: 5px 15px;
   -webkit-border-radius: 15px;
           border-radius: 15px;
 }

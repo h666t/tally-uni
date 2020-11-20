@@ -87,7 +87,7 @@ export default {
     > li {
       margin: 10px 15px;
       display: flex;
-      padding: 5px 20px;
+      padding: 5px 15px;
       border-radius: 15px;
     }
 
