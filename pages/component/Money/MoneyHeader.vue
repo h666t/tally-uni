@@ -53,7 +53,7 @@ export default {
       }
     },
     goBack(){
-      uni.navigateTo({url:'Home'})
+      uni.redirectTo({url:'Home'})
     }
   }
 }

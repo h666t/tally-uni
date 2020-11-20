@@ -8,7 +8,7 @@
 export default {
   methods:{
     goToMoney(){
-      uni.navigateTo({url:'Money'})
+      uni.redirectTo({url:'Money'})
     }
   }
 }
