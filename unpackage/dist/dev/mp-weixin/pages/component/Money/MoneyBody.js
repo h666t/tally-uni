@@ -169,6 +169,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 var _idCreator = _interopRequireDefault(__webpack_require__(/*! ../../lib/idCreator */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}var Icon = function Icon() {__webpack_require__.e(/*! require.ensure | pages/component/public/Icon */ "pages/component/public/Icon").then((function () {return resolve(__webpack_require__(/*! ../public/Icon */ 103));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
 {
   beforeCreate: function beforeCreate() {
     this.$store.commit('fetchTags');
@@ -176,10 +177,18 @@ var _idCreator = _interopRequireDefault(__webpack_require__(/*! ../../lib/idCrea
   },
   data: function data() {
     return {
-      tags: this.$store.state.tags,
       beSelectedTags: this.$store.state.beSelectedTags };
 
   },
+  computed: {
+    tags: function tags() {
+      return this.$store.state.tags;
+    },
+    beSelectedTagsInStore: function beSelectedTagsInStore() {
+      return this.$store.state.beSelectedTags;
+    } },
+
+
   components: { Icon: Icon },
   methods: {
     idCreator: _idCreator.default,
@@ -197,7 +206,16 @@ var _idCreator = _interopRequireDefault(__webpack_require__(/*! ../../lib/idCrea
       } else {
         publicFn([].concat(_toConsumableArray(this.beSelectedTags), [id]));
       }
-    } } };exports.default = _default;
+    } },
+
+  //点击OK时，store中的beSelectedTags会被置空，watch它，来保证视图上被选中的标签也会被清除
+  watch: {
+    'beSelectedTagsInStore': {
+      handler: function handler() {
+        if (this.$store.state.beSelectedTags.length === 0)
+        this.beSelectedTags = [];
+      },
+      immediate: true } } };exports.default = _default;
 
 /***/ }),
 

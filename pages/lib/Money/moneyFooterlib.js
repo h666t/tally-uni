@@ -41,6 +41,9 @@ const moneyFooterlib = {
           beSelectedTags: $store.state.beSelectedTags,
         })
         $store.commit('updateAmount', 0)
+        $store.commit('updateType','支出')
+        $store.commit('updateBeSelectedTags',[])
+        $store.commit('updateDate',dayjs().format('YYYY-MM-DD'))
         return result;
       case "0":
         if (result.indexOf("0") === 0 && result.indexOf('.') === -1) {

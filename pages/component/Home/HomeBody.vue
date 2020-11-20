@@ -57,7 +57,7 @@ import moneyFooterlib from "../../lib/Money/moneyFooterlib"
             }
           })
         }
-        console.log(result)
+        result.reverse()
         return result
       },
       todayInput(){

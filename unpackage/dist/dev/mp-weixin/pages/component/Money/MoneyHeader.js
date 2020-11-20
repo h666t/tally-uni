@@ -143,6 +143,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 {
   components: { Icon: Icon },
   created: function created() {
@@ -150,18 +151,21 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      text: ['支出', '收入'],
-      type: '支出' };
+      text: ['支出', '收入'] };
 
   },
+  computed: {
+    type: function type() {
+      return this.$store.state.type;
+    } },
+
+
   methods: {
     changeType: function changeType() {
       if (this.$store.state.type === '支出') {
         this.$store.commit('updateType', '收入');
-        this.type = '收入';
       } else {
         this.$store.commit('updateType', '支出');
-        this.type = '支出';
       }
     },
     goBack: function goBack() {

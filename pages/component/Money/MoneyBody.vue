@@ -9,9 +9,9 @@
       >
         {{item.name}}
       </li>
-<!--      <li>-->
-<!--        <Icon class="icon" icon-name="icon-Settingscontroloptions"/>-->
-<!--      </li>-->
+      <!--      <li>-->
+      <!--        <Icon class="icon" icon-name="icon-Settingscontroloptions"/>-->
+      <!--      </li>-->
     </ol>
   </view>
 </template>
@@ -19,17 +19,26 @@
 <script>
 import Icon from "../public/Icon"
 import idCreator from "../../lib/idCreator"
+
 export default {
   beforeCreate() {
     this.$store.commit('fetchTags')
-    this.$store.commit('updateBeSelectedTags',[])
+    this.$store.commit('updateBeSelectedTags', [])
   },
   data() {
     return {
-      tags: this.$store.state.tags,
       beSelectedTags: this.$store.state.beSelectedTags
     }
   },
+  computed: {
+    tags() {
+      return this.$store.state.tags
+    },
+    beSelectedTagsInStore() {
+      return this.$store.state.beSelectedTags
+    }
+  }
+  ,
   components: {Icon},
   methods: {
     idCreator,
@@ -47,6 +56,16 @@ export default {
       } else {
         publicFn([...this.beSelectedTags, id])
       }
+    }
+  },
+  //点击OK时，store中的beSelectedTags会被置空，watch它，来保证视图上被选中的标签也会被清除
+  watch: {
+    'beSelectedTagsInStore': {
+      handler() {
+        if (this.$store.state.beSelectedTags.length === 0)
+          this.beSelectedTags = []
+      },
+      immediate: true
     }
   }
 }

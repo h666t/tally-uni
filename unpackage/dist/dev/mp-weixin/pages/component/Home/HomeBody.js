@@ -173,7 +173,7 @@ var _default = { beforeCreate: function beforeCreate() {this.$store.commit('fetc
           }
         });
       }
-      console.log(result);
+      result.reverse();
       return result;
     },
     todayInput: function todayInput() {

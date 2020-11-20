@@ -1,11 +1,12 @@
 <template>
 <view>
   <!--  点击支出-->
-  <view @click="changeType" v-if="type === '支出'" class="wrapper">
+  <view v-if="type === '支出'" class="wrapper">
       <Icon @click="goBack" class="iconfont" icon-name="icon-left_3"/>
     <text v-for="item in text"
           :key="item"
           :class="item === '支出' ? 'output active' : 'input'"
+          @click="changeType"
     >
       {{item}}
     </text>
@@ -35,17 +36,20 @@ export default {
   data(){
     return {
       text:['支出','收入'],
-      type: '支出'
     }
   },
+  computed:{
+    type(){
+      return this.$store.state.type
+    }
+  }
+  ,
   methods:{
     changeType(){
       if (this.$store.state.type === '支出'){
         this.$store.commit('updateType','收入')
-        this.type = '收入'
       }else {
         this.$store.commit('updateType','支出')
-        this.type = '支出'
       }
     },
     goBack(){
