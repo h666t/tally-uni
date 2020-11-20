@@ -12,7 +12,7 @@ export default {
   components: {Icon},
   methods: {
     goback(){
-      uni.navigateTo({url:'Home'})
+      uni.redirectTo({url:'Home'})
     }
   }
 }

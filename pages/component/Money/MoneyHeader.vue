@@ -22,8 +22,6 @@
     </text>
   </view>
 </view>
-
-
 </template>
 
 <script>
