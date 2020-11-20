@@ -9,9 +9,9 @@
       >
         {{item.name}}
       </li>
-      <li>
-        <Icon class="icon" icon-name="icon-Settingscontroloptions"/>
-      </li>
+<!--      <li>-->
+<!--        <Icon class="icon" icon-name="icon-Settingscontroloptions"/>-->
+<!--      </li>-->
     </ol>
   </view>
 </template>
